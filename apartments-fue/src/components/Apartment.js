@@ -126,11 +126,11 @@ function Apartment(props) {
           <div className="apartment-name">{props.title}</div>
           <div id="airbnb-btn" className="airbnb-button">
             {props.number === 27 ? (
-              <a href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
+              <a className="airbnb-link" href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
                 {t("Airbnb_reservation")}
               </a>
             ) : (
-              <a href="https://www.airbnb.pl/rooms/30067044?guests=1&adults=1&s=67&unique_share_id=df41e7ba-2cca-4db9-acfc-323f7cb93021">
+              <a className="airbnb-link" href="https://www.airbnb.pl/rooms/30067044?guests=1&adults=1&s=67&unique_share_id=df41e7ba-2cca-4db9-acfc-323f7cb93021">
                 {t("Airbnb_reservation")}
               </a>
             )}
@@ -194,11 +194,11 @@ function Apartment(props) {
             <div>{t("Apartment_reservation_header")}</div>
             <div id="airbnb-btn" className="airbnb-button">
               {props.number === 27 ? (
-                <a href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
+                <a className="airbnb-link" href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
                   {t("Airbnb_reservation")}
                 </a>
               ) : (
-                <a href="https://www.airbnb.pl/rooms/30067044?guests=1&adults=1&s=67&unique_share_id=df41e7ba-2cca-4db9-acfc-323f7cb93021">
+                <a className="airbnb-link" href="https://www.airbnb.pl/rooms/30067044?guests=1&adults=1&s=67&unique_share_id=df41e7ba-2cca-4db9-acfc-323f7cb93021">
                   {t("Airbnb_reservation")}
                 </a>
               )}
