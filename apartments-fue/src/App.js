@@ -4,7 +4,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import ReactGA from "react-ga4";
 import Header from "./components/Header";
@@ -17,31 +17,38 @@ import separator from "./assets/separator-small-1.png";
 import Sightseeing from "./components/Sightseeing";
 import CostaCalma from "./components/Costacalma";
 import Climate from "./components/Climate";
+import CookiePopup from "./components/CookiePopup";
 
 const apartment23Images = importAll(
   require.context("./assets/apartment23", false, /\.(png|jpe?g|svg|webp)$/)
 );
-
 const apartment27Images = importAll(
   require.context("./assets/apartment27", false, /\.(png|jpe?g|svg|webp)$/)
 );
 
-ReactGA.initialize("G-KDXMFGTPCD");
-
 function App() {
+  const [cookieConsent, setCookieConsent] = useState(false);
+
+  useEffect(() => {
+    if (cookieConsent) {
+      ReactGA.initialize("G-KDXMFGTPCD");
+    }
+  }, [cookieConsent]);
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Header />
         <div className="content">
           <div className="title-app">Costa Calma Apartments Fuerteventura</div>
+          <CookiePopup setCookieConsent={setCookieConsent} />
           <img src={separator} alt="separator" />
-          <AnalyticsWrapper>
+          <AnalyticsWrapper cookieConsent={cookieConsent}>
             <Routes>
               <Route
                 path="/"
                 element={<Home image1={apartment1} image2={apartment2} />}
-              ></Route>
+              />
               <Route
                 path="/colores_de_fuerteventura_23"
                 element={
@@ -87,12 +94,14 @@ function importAll(r) {
   return images;
 }
 
-function AnalyticsWrapper({ children }) {
+function AnalyticsWrapper({ children, cookieConsent }) {
   const location = useLocation();
 
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
-  }, [location]);
+    if (cookieConsent) {
+      ReactGA.send({ hitType: "pageview", page: location.pathname });
+    }
+  }, [location, cookieConsent]);
 
   return <>{children}</>;
 }
