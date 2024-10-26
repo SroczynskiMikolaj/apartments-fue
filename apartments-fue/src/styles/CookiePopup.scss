@@ -19,6 +19,24 @@
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
+  @media screen and (max-width: 1024px) {
+    position: relative;
+    padding: 30px 10px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    position: relative;
+    padding: 30px 10px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 480px) {
+    position: relative;
+    padding: 30px 10px;
+    height: auto;
+  }
+
 }
 
 button {
