@@ -124,7 +124,7 @@ function Apartment(props) {
       <div className="apartment-text-container">
         <div className="apartment-header-container">
           <div className="apartment-name">{props.title}</div>
-          <div className="airbnb-button">
+          <div id="airbnb-btn" className="airbnb-button">
             {props.number === 27 ? (
               <a href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
                 {t("Airbnb_reservation")}
@@ -192,7 +192,7 @@ function Apartment(props) {
         <div className="apartment-reservation-container">
           <div className="reservation-header-text">
             <div>{t("Apartment_reservation_header")}</div>
-            <div className="airbnb-button">
+            <div id="airbnb-btn" className="airbnb-button">
               {props.number === 27 ? (
                 <a href="https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba">
                   {t("Airbnb_reservation")}
