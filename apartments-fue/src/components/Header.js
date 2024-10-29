@@ -81,8 +81,8 @@ function Header() {
             <div className={`navigation ${menuOpen ? 'open' : ''}`}>
                 <div onClick={handleClick}>{t("About_us")}</div>
                 <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
-                {/* <div onClick={navigate_climate}>{t("Climate")}</div>
-                <div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
+                <div onClick={navigate_climate}>{t("Climate")}</div>
+                {/*<div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
             </div>
 
             <div className="languages">
@@ -107,8 +107,8 @@ function Header() {
                     <div className="navigation">
                         <div onClick={handleClick}>{t("About_us")}</div>
                         <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
-                        {/* <div onClick={navigate_climate}>{t("Climate")}</div>
-                        <div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
+                        <div onClick={navigate_climate}>{t("Climate")}</div>
+                        {/*<div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
                     </div>
                     <div className="languages">
                         {[

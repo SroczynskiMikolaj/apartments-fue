@@ -1,0 +1,68 @@
+.climate-container {
+    padding: 20px 50px;
+
+    @media screen and (max-width: 767px) {
+        padding: 20px 30px;
+      }
+    
+      @media screen and (max-width: 480px) {
+        padding: 20px 30px;
+      }
+
+    .climate-title {
+        font-weight: 700;
+        font-size: 21px;
+
+    }
+
+    .climate-descriptions-container {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+    }
+
+    .weather-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+
+        img {
+            width: 60%;
+
+            @media screen and (max-width: 767px) {
+                width: 100%;
+              }
+            
+              @media screen and (max-width: 480px) {
+                width: 100%;
+              }
+        }
+    }
+
+
+    .four-seasons {
+        padding: 30px;
+        @media screen and (max-width: 767px) {
+            padding: 0;
+          }
+        
+          @media screen and (max-width: 480px) {
+            padding: 0;
+          }
+
+        .season-header {
+            text-align: start;
+            font-weight: 700;
+            font-size: 18px;
+    
+        }
+    
+        .season-text {
+            text-align: start;
+        }
+    }
+}
+
