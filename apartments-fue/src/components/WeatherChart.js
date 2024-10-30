@@ -84,7 +84,7 @@ const options = {
   },
 };
 
-function MyMixedChart() {
+function WeatherChart() {
   return (
     <div className='weather-chart-container'>
       <Line data={data} options={options} />
@@ -92,4 +92,4 @@ function MyMixedChart() {
   );
 }
 
-export default MyMixedChart;
+export default WeatherChart;
