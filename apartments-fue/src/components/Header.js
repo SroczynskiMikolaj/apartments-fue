@@ -36,8 +36,13 @@ function Header() {
         setMenuOpen(false);
     };
 
-    const navigate_costacalma = () => {
-        navigate("/CostaCalma");
+    const navigate_fuerteventura = () => {
+        navigate("/Fuerteventura");
+        setMenuOpen(false);
+    };
+
+    const navigate_commuting = () => {
+        navigate("/Commuting");
         setMenuOpen(false);
     };
 
@@ -82,7 +87,8 @@ function Header() {
                 <div onClick={handleClick}>{t("About_us")}</div>
                 <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
                 <div onClick={navigate_climate}>{t("Climate")}</div>
-                {/*<div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
+                {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
+                <div onClick={navigate_commuting}>{t("Commuting")}</div>
             </div>
 
             <div className="languages">
@@ -108,7 +114,8 @@ function Header() {
                         <div onClick={handleClick}>{t("About_us")}</div>
                         <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
                         <div onClick={navigate_climate}>{t("Climate")}</div>
-                        {/*<div onClick={navigate_costacalma}>{t("CostaCalma")}</div> */}
+                        {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
+                        <div onClick={navigate_commuting}>{t("Commuting")}</div>
                     </div>
                     <div className="languages">
                         {[

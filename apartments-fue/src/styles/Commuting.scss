@@ -1,0 +1,151 @@
+@import "styles";
+.commuting-container {
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .commuting-intro {
+    max-width: 400px;
+    align-self: center;
+  }
+
+  .commuting-map {
+    padding: 20px;
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+    @media screen and (max-width: 480px) {
+      padding: 0;
+    }
+
+    img {
+      width: 40%;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .types-of-transport {
+    padding: 30px;
+    display: flex;
+    justify-content: space-evenly;
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+      padding: 0;
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      padding: 0;
+    }
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .card {
+      cursor: pointer;
+      background-color: white;
+      box-shadow: 0px 0px 16px rgba(4, 4, 4, 0.1);
+      border-radius: 15px;
+      margin: 10px;
+
+      &:hover {
+        box-shadow: 0px 0px 48px rgba(4, 4, 4, 0.25);
+        .title {
+          color: $color-1;
+        }
+      }
+      .image {
+        max-width: 500px;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .title {
+        display: flex;
+        font-size: 24px;
+        color: $black;
+        padding: 10px;
+        justify-content: center;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+
+      .card-description {
+        padding: 20px;
+
+        &.taxi-description,
+        &.shuttle-description,
+        &.tiadhe-description {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .link {
+          text-decoration: none;
+          color: $color-1;
+          font-weight: 700;
+          &:hover {
+            color: $black;
+          }
+        }
+
+        .taxi,
+        .shuttle {
+          width: 80%;
+          border-radius: 15px;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+          }
+          @media screen and (max-width: 480px) {
+            width: 100%;
+          }
+        }
+
+        .tiadhe {
+          width: 70%;
+          border-radius: 15px;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+          }
+          @media screen and (max-width: 480px) {
+            width: 100%;
+          }
+        }
+
+        .car-hire-list {
+          li {
+            text-align: start;
+          }
+        }
+
+        .price-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .price {
+            color: $color-1;
+            font-weight: 700;
+          }
+        }
+
+        .hire-p {
+          color: $color-5;
+          font-weight: "bold";
+        }
+      }
+    }
+  }
+}

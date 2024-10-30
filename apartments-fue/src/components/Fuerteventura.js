@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 import "../styles/styles.scss";
-import "../styles/Costacalma.scss";
-function CostaCalma() {
+import "../styles/Fuerteventura.scss";
+function Fuerteventura() {
   const { t } = useTranslation();
 
   return (
     <div className="island-container">
       <div>
         <div className="island-info">
-          Fuerteventura – Rajska Wyspa Kanaryjska……….
+          Fuerteventura – Rajska Wyspa Kanaryjska
         </div>
         <div>
           Fuerteventura, jedna z najbardziej urokliwych wysp archipelagu Wysp
@@ -180,4 +180,4 @@ function CostaCalma() {
   );
 }
 
-export default CostaCalma;
+export default Fuerteventura;

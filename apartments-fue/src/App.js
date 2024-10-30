@@ -15,8 +15,9 @@ import Home from "./components/Home";
 import Apartment from "./components/Apartment";
 import separator from "./assets/separator-small-1.png";
 import Sightseeing from "./components/Sightseeing";
-import CostaCalma from "./components/Costacalma";
+import Fuerteventura from "./components/Fuerteventura";
 import Climate from "./components/Climate";
+import Commuting from "./components/Commuting";
 import CookiePopup from "./components/CookiePopup";
 
 const apartment23Images = importAll(
@@ -76,8 +77,9 @@ function App() {
                 }
               />
               <Route path="/Sightseeing" element={<Sightseeing />} />
-              <Route path="/CostaCalma" element={<CostaCalma />} />
+              <Route path="/Fuerteventura" element={<Fuerteventura />} />
               <Route path="/Climate" element={<Climate />} />
+              <Route path="/Commuting" element={<Commuting />} />
             </Routes>
           </AnalyticsWrapper>
           <img src={separator} alt="separator" />
