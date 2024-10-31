@@ -6,7 +6,7 @@ import logo_title from "../assets/logo3_title.png";
 import { useEffect, useState } from 'react';
 import i18n from 'i18next';
 import { useNavigate } from 'react-router-dom';
-import { PL, GB, DE, ES } from 'country-flag-icons/react/3x2';
+import { PL, GB, DE, ES, IT, DK} from 'country-flag-icons/react/3x2';
 
 function Header() {
     const { t } = useTranslation();
@@ -96,7 +96,9 @@ function Header() {
                     { code: 'en', flag: <GB /> },
                     { code: 'pl', flag: <PL /> },
                     { code: 'de', flag: <DE /> },
-                    { code: 'es', flag: <ES /> }
+                    { code: 'es', flag: <ES /> },
+                    { code: 'it', flag: <IT /> },
+                    { code: 'dk', flag: <DK /> },
                 ].map(({ code, flag }) => (
                     <div
                         key={code}
@@ -117,12 +119,17 @@ function Header() {
                         {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
                         <div onClick={navigate_commuting}>{t("Commuting")}</div>
                     </div>
+                    
                     <div className="languages">
+                        <div className="menu-separator"></div>
+                        <div className="flags-container">
                         {[
                             { code: 'en', flag: <GB /> },
                             { code: 'pl', flag: <PL /> },
                             { code: 'de', flag: <DE /> },
-                            { code: 'es', flag: <ES /> }
+                            { code: 'es', flag: <ES /> },
+                            { code: 'it', flag: <IT /> },
+                            { code: 'dk', flag: <DK /> },
                         ].map(({ code, flag }) => (
                             <div
                                 key={code}
@@ -133,6 +140,7 @@ function Header() {
                                 {code.toUpperCase()}
                             </div>
                         ))}
+                        </div>
                     </div>
                 </div>
             )}
