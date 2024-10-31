@@ -75,7 +75,7 @@ function Commuting() {
             </div>
             <div className="price-container">
               <Trans i18nKey="Commuting_taxi_3" components={{}} />
-              <div className="price">70-80 €</div>
+              <div className="price">80 €</div>
             </div>
             <img className="taxi" src={taxi_stand} alt="taxi-stand" />
           </div>
