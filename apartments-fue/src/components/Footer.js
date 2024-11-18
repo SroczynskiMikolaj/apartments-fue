@@ -11,8 +11,8 @@ function Footer() {
         <div>{t("Host")}</div>
         <div className="footer-text">
           {t("Mail")}:
-          <a href="mailto:coloresdefuerteventura@gmail.com">
-            coloresdefuerteventura@gmail.com
+          <a href="mailto:coloresdefuerteventure@gmail.com">
+            coloresdefuerteventure@gmail.com
           </a>
         </div>
         <div className="footer-text">
