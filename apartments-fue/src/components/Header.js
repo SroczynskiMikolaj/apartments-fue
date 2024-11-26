@@ -46,6 +46,11 @@ function Header() {
         setMenuOpen(false);
     };
 
+    const navigate_contact = () => {
+        navigate("/Contact");
+        setMenuOpen(false);
+    };
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (menuOpen && !event.target.closest('.header-container')) {
@@ -89,6 +94,7 @@ function Header() {
                 <div onClick={navigate_climate}>{t("Climate")}</div>
                 {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
                 <div onClick={navigate_commuting}>{t("Commuting")}</div>
+                {/* <div onClick={navigate_contact}>{t("Contact")}</div> */}
             </div>
 
             <div className="languages">
@@ -118,6 +124,7 @@ function Header() {
                         <div onClick={navigate_climate}>{t("Climate")}</div>
                         {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
                         <div onClick={navigate_commuting}>{t("Commuting")}</div>
+                        {/* <div onClick={navigate_contact}>{t("Contact")}</div> */}
                     </div>
                     
                     <div className="languages">
