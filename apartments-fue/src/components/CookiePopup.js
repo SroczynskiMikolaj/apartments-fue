@@ -32,6 +32,11 @@ const CookiePopup = ({ setCookieConsent }) => {
     isOpen && (
       <div className="popup-overlay">
         <div className="popup-cookies-content">
+          <div className="close-button-wrapper">
+            <button className="cookies-close-button" onClick={closePopup}>
+              X
+            </button>
+          </div>
           <h2>{t("Privacy_respect")}</h2>
           <div>
             <Trans i18nKey="Cookies_consent" 
@@ -40,9 +45,6 @@ const CookiePopup = ({ setCookieConsent }) => {
               }}/>
           </div>
           <div className="popup-buttons-wrapper">
-            <button className="cookies-close-button" onClick={closePopup}>
-            {t("Close")}
-            </button>
             <button className="cookies-accept-button" onClick={acceptCookies}>
             {t("Accept")}
             </button>

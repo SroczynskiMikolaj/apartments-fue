@@ -1,0 +1,123 @@
+@import "styles";
+.contact-container {
+    padding: 20px 50px;
+
+    @media screen and (max-width: 767px) {
+        padding: 20px 30px;
+      }
+    
+    @media screen and (max-width: 480px) {
+    padding: 20px 30px;
+    }
+
+
+    .contact-subtitle {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .contact-descriptions-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+          }
+        
+        @media screen and (max-width: 480px) {
+            flex-direction: column;
+        }
+    }
+
+    .contact-details {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        
+
+        .logo {
+            width: 200px;
+        }
+
+    }
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @media screen and (max-width: 767px) {
+            gap: 20px;
+          }
+        
+        @media screen and (max-width: 480px) {
+            gap: 20px;
+        }
+
+    }
+    
+    .contact {
+        font-weight: 700;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+          }
+        
+        @media screen and (max-width: 480px) {
+            flex-direction: column;
+        }
+
+        .mail,
+        .telephone,
+        .facebook {
+            font-weight: 500;
+        }
+
+        .icon {
+            width: 30px;
+        }
+
+        .facebook {
+            .link {
+                text-decoration: none;
+                color: $color-1;
+            }
+        }
+
+        .contact-details-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.contact-form-container {
+    width: 100%;
+
+    .form-item {
+        margin-bottom: 10px;
+        
+        label {
+            font-size: 16px;
+        }
+        
+        textarea,
+        input {
+            border: 1px solid $black;
+            border-radius: 10px;
+        }
+    }
+
+}
+
