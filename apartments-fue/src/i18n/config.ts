@@ -148,6 +148,10 @@ i18n
             Commuting_hire_4: "20-30 € / day",
             Commuting_hire_5: "The amount depends on the age of the renter and the length of the rental period.",
             Commuting: "Commuting",
+            Corralejo: "Corralejo is a town in the north of the island with many restaurants, bars, and shops. This place is more tourist-oriented than relaxing, and it is very popular with visitors from the British Isles. To the south of the town is the Parque Natural de Corralejo, which includes a very large coastal area with magnificent dunes. In the second week of November, a major attraction in Corralejo is the annual Festival of Kites.",
+            El_Cotillo: "El Cotillo is a small and quiet town on the west coast with white buildings. It is dominated by peace and tranquility. The area has a typical vacation character. Numerous restaurants and tapas bars located along the coast are a major attraction of the town. It is also a base for surfing and kiteboarding. Nearby is the picturesque El Toston lighthouse.",
+            Costa_Calma: "Costa Calma is a quiet and peaceful town at the beginning of the sandy Playa de Jandia beach. The main attractions are the wide, clean beaches. The town features a lot of greenery with numerous palm trees. Costa Calma's location is a very good base for exploring the island and ideal for enjoying beaches and all water sports (surfing, kiteboarding, windsurfing).",
+            Faro_Entallada: "Faro de la Entallada is a beautifully located lighthouse with a wonderful museum of African masks and decorations. Admission is free, but the museum is closed on Sundays and Mondays. Heading north toward Puerto del Rosario, it's worth visiting the tiny hamlet of Pozo Negro. Here, there are only a few houses and two small tapas bars serving excellent seafood dishes – peace and quiet abound.",
           },
       },
       pl: {
@@ -272,6 +276,10 @@ i18n
             Commuting_hire_4: "20-30 € / dzień",
             Commuting_hire_5: "Kwota jest zależna od wieku osoby wypożyczającej oraz od długości okresu wypożyczenia.",
             Commuting: "Dojazd",
+            Corralejo: "Corralejo miasteczko na północy wyspy z dużą ilością restauracji, barów oraz sklepów. To miejsce jest raczej turystyczne niż wypoczynkowe, bardzo chętnie odwiedzane przez turystów z Wysp Brytyjskich. Na południe od miasta znajduje się Parque Natural de Carralejo obejmujący bardzo duży obszar wybrzeża z wspaniałymi wydmami . W drugim tygodniu listopada dużą atrakcją Carralejo jest coroczny Festival Commetas (pokaz Latawców)",
+            El_Cotillo: "El Cotillo to nieduże i ciche miasteczko na zachodnim wybrzeżu z białą zabudową. Dominuje cisza i spokój. Okolica ma charakter typowo wypoczynkowy. Liczne restauracje i bary tapas położone wzdłuż wybrzeża są dużą atrakcją miasteczka. Jest to także baza wypadowa do uprawiania surfingu i kite. W pobliżu malowniczo położona latarnia morska El Toston.",
+            Costa_Calma: "Costa Calma – ciche i spokojne miasteczko na początku piaszczystej plaży Playa de Jandia. Atrakcją są szerokie czyste plaże. W mieście dużo zieleni z licznymi palmami. Lokalizacja Costa Calma to bardzo dobre miejsce wypadowe do zwiedzania wyspy oraz idealne do korzystanie z plaż i wszelkich sportów wodnych (surf, kite, windsurfing)",
+            Faro_Entallada: "Faro de la Entallada – pięknie położona latarnia morska z wspaniałym muzeum masek i dekoracji afrykańskich. Wejście bezpłatne a muzeum nie czynne w niedzielę i poniedziałki. Udając się na północ w kierunku Puerto del Rosario warto odwiedzić malutką osadę Pozo Negro. Tutaj tylko kilka domów dwa małe bary tapas serwujące znakomite potrawy z owoców morza – cisza i spokój.",
           },
       },
       de: {
@@ -396,6 +404,10 @@ i18n
             Commuting_hire_4: "20-30 € / Tag",
             Commuting_hire_5: "Der Betrag hängt vom Alter des Mieters und der Dauer der Mietzeit ab.",                  
             Commuting: "Anfahrt",
+            Corralejo: "Corralejo ist eine Stadt im Norden der Insel mit vielen Restaurants, Bars und Geschäften. Dieser Ort ist eher touristisch als entspannend und bei Besuchern von den Britischen Inseln sehr beliebt. Südlich der Stadt liegt der Parque Natural de Corralejo, der ein sehr großes Küstengebiet mit beeindruckenden Dünen umfasst. In der zweiten Novemberwoche ist das jährliche Drachenfestival eine große Attraktion in Corralejo.",
+            El_Cotillo: "El Cotillo ist ein kleines und ruhiges Städtchen an der Westküste mit weißen Gebäuden. Es herrschen Ruhe und Frieden vor. Die Gegend hat einen typisch erholsamen Charakter. Zahlreiche Restaurants und Tapas-Bars entlang der Küste sind eine große Attraktion der Stadt. Es ist auch ein Ausgangspunkt für Surfen und Kitesurfen. In der Nähe befindet sich der malerisch gelegene Leuchtturm El Toston.",
+            Costa_Calma: "Costa Calma ist eine ruhige und friedliche Stadt am Beginn des Sandstrandes Playa de Jandia. Die Hauptattraktionen sind die breiten, sauberen Strände. Die Stadt ist von viel Grün mit zahlreichen Palmen geprägt. Die Lage von Costa Calma ist ein sehr guter Ausgangspunkt, um die Insel zu erkunden, und ideal, um Strände und alle Wassersportarten (Surfen, Kitesurfen, Windsurfen) zu genießen.",
+            Faro_Entallada: "Faro de la Entallada ist ein wunderschön gelegener Leuchtturm mit einem wunderbaren Museum afrikanischer Masken und Dekorationen. Der Eintritt ist kostenlos, aber das Museum ist sonntags und montags geschlossen. Auf dem Weg nach Norden in Richtung Puerto del Rosario lohnt es sich, das winzige Dorf Pozo Negro zu besuchen. Hier gibt es nur wenige Häuser und zwei kleine Tapas-Bars, die hervorragende Meeresfrüchtegerichte servieren – Ruhe und Frieden herrschen hier vor."
           },
       },
       es: {
@@ -520,6 +532,10 @@ i18n
             Commuting_hire_4: "20-30 € / día",
             Commuting_hire_5: "El monto depende de la edad del arrendatario y de la duración del período de alquiler.",      
             Commuting: "Desplazamiento",
+            Corralejo: "Corralejo es una ciudad en el norte de la isla con muchos restaurantes, bares y tiendas. Este lugar es más turístico que relajante y es muy popular entre los visitantes de las Islas Británicas. Al sur de la ciudad se encuentra el Parque Natural de Corralejo, que incluye una gran zona costera con magníficas dunas. En la segunda semana de noviembre, una gran atracción en Corralejo es el Festival Anual de Cometas.",
+            El_Cotillo: "El Cotillo es un pequeño y tranquilo pueblo en la costa oeste con edificios blancos. Predominan la paz y la tranquilidad. La zona tiene un carácter típicamente vacacional. Numerosos restaurantes y bares de tapas ubicados a lo largo de la costa son una gran atracción del pueblo. También es una base para practicar surf y kitesurf. Cerca se encuentra el pintoresco faro de El Toston.",
+            Costa_Calma: "Costa Calma es un pueblo tranquilo y apacible al comienzo de la playa de arena Playa de Jandia. Las principales atracciones son las amplias y limpias playas. La ciudad cuenta con mucha vegetación con numerosas palmeras. La ubicación de Costa Calma es un muy buen punto de partida para explorar la isla e ideal para disfrutar de las playas y todos los deportes acuáticos (surf, kitesurf, windsurf).",
+            Faro_Entallada: "Faro de la Entallada es un faro bellamente ubicado con un maravilloso museo de máscaras y decoraciones africanas. La entrada es gratuita, pero el museo está cerrado los domingos y lunes. Dirigiéndose hacia el norte en dirección a Puerto del Rosario, vale la pena visitar la pequeña aldea de Pozo Negro. Aquí, solo hay unas pocas casas y dos pequeños bares de tapas que sirven excelentes platos de mariscos, en un entorno de paz y tranquilidad.",
           },
       },
       it: {
@@ -643,6 +659,10 @@ i18n
           Commuting_hire_4: "20-30 € / giorno",
           Commuting_hire_5: "L'importo dipende dall'età del noleggiatore e dalla durata del periodo di noleggio.",
           Commuting: "Trasporto",
+          Corralejo: "Corralejo è una città nel nord dell'isola con molti ristoranti, bar e negozi. Questo luogo è più turistico che rilassante ed è molto popolare tra i visitatori delle Isole Britanniche. A sud della città si trova il Parque Natural de Corralejo, che comprende una vasta area costiera con magnifiche dune. Nella seconda settimana di novembre, un'importante attrazione a Corralejo è il Festival Annuale degli Aquiloni.",
+          El_Cotillo: "El Cotillo è una piccola e tranquilla cittadina sulla costa occidentale con edifici bianchi. Predominano pace e tranquillità. La zona ha un carattere tipicamente vacanziero. Numerosi ristoranti e bar di tapas situati lungo la costa sono una grande attrazione della città. È anche una base per praticare surf e kite. Nelle vicinanze si trova il pittoresco faro di El Toston.",
+          Costa_Calma: "Costa Calma è una città tranquilla e pacifica all'inizio della spiaggia sabbiosa Playa de Jandia. Le principali attrazioni sono le ampie e pulite spiagge. La città presenta molta vegetazione con numerose palme. La posizione di Costa Calma è un ottimo punto di partenza per esplorare l'isola ed è ideale per godersi le spiagge e tutti gli sport acquatici (surf, kite, windsurf).",
+          Faro_Entallada: "Faro de la Entallada è un faro situato in modo incantevole con un meraviglioso museo di maschere e decorazioni africane. L'ingresso è gratuito, ma il museo è chiuso la domenica e il lunedì. Andando verso nord in direzione di Puerto del Rosario, vale la pena visitare il piccolo villaggio di Pozo Negro. Qui ci sono solo poche case e due piccoli bar di tapas che servono ottimi piatti di frutti di mare – pace e tranquillità ovunque.",
           },
       },
       dk: {
@@ -766,7 +786,10 @@ i18n
           Commuting_hire_4: "20-30 € / dag",
           Commuting_hire_5: "Het bedrag hangt af van de leeftijd van de huurder en de duur van de huurperiode.",
           Commuting: "Vervoer",
-
+          Corralejo: "Corralejo is een stad in het noorden van het eiland met veel restaurants, bars en winkels. Deze plek is meer toeristisch dan ontspannend en is erg populair bij bezoekers uit de Britse eilanden. Ten zuiden van de stad ligt het Parque Natural de Corralejo, dat een zeer groot kustgebied met prachtige duinen omvat. In de tweede week van november is het jaarlijkse Vliegerfestival een grote attractie in Corralejo.",
+          El_Cotillo: "El Cotillo is een klein en rustig stadje aan de westkust met witte gebouwen. Rust en stilte overheersen. De omgeving heeft een typisch vakantiekarakter. Talrijke restaurants en tapasbars langs de kust zijn een grote attractie van de stad. Het is ook een uitvalsbasis voor surfen en kitesurfen. In de buurt ligt de schilderachtige vuurtoren El Toston.",
+          Costa_Calma: "Costa Calma is een rustige en vredige stad aan het begin van het zandstrand Playa de Jandia. De belangrijkste attracties zijn de brede, schone stranden. De stad biedt veel groen met talrijke palmbomen. De ligging van Costa Calma is een zeer goed uitgangspunt om het eiland te verkennen en ideaal om te genieten van de stranden en alle watersporten (surfen, kite, windsurfen).",
+          Faro_Entallada: "Faro de la Entallada is een prachtig gelegen vuurtoren met een prachtig museum van Afrikaanse maskers en decoraties. Toegang is gratis, maar het museum is gesloten op zondag en maandag. Op weg naar het noorden richting Puerto del Rosario is het de moeite waard om het kleine gehucht Pozo Negro te bezoeken. Hier zijn slechts een paar huizen en twee kleine tapasbars die uitstekende zeevruchtengerechten serveren – rust en stilte overheersen.",
           },
       }
     },

@@ -20,6 +20,12 @@ import image14 from "../assets/sightseeing/Picture14.jpg";
 import image15 from "../assets/sightseeing/Picture15.jpg";
 import image16 from "../assets/sightseeing/Picture16.jpg";
 import image17 from "../assets/sightseeing/Picture17.jpg";
+import image18 from "../assets/sightseeing/Antigua.jpg";
+import image19 from "../assets/sightseeing/corralejo.jpg";
+import image20 from "../assets/sightseeing/CostaCalma.jpg";
+import image21 from "../assets/sightseeing/cotillo.jpg";
+import image22 from "../assets/sightseeing/FaroEntalada.jpg";
+import image23 from "../assets/sightseeing/sotavento.jpg";
 import { Icon } from "leaflet";
 import "../styles/Sightseeing.scss";
 
@@ -44,11 +50,25 @@ function Sightseeing(props) {
       description: "Popcorn_beach",
     },
     {
+      name: "Corralejo",
+      latitude: 28.743891,
+      longitude: -13.86984,
+      image: image19,
+      description: "Corralejo",
+    },
+    {
       name: "Calderon Hondo",
       latitude: 28.72881,
       longitude: -13.911732,
       image: image14,
       description: "Calderon_Hondo",
+    },
+    {
+      name: "El Cotillo",
+      latitude: 28.68881,
+      longitude: -14.01232,
+      image: image21,
+      description: "El_Cotillo",
     },
     {
       name: "Mirador de Guise y Ayose",
@@ -61,7 +81,7 @@ function Sightseeing(props) {
       name: "Antigua",
       latitude: 28.419506,
       longitude: -14.0135,
-      image: image12,
+      image: image18,
       description: "Antigua",
     },
     {
@@ -87,8 +107,8 @@ function Sightseeing(props) {
     },
     {
       name: "Aguas Verdes",
-      latitude: 28.405528,
-      longitude: -14.155575,
+      latitude: 28.505528,
+      longitude: -14.085575,
       image: image9,
       description: "Aguas_Verdes",
     },
@@ -114,6 +134,13 @@ function Sightseeing(props) {
       description: "Tarajalejo",
     },
     {
+      name: "Faro de la Entallada",
+      latitude: 28.233914,
+      longitude: -13.950248,
+      image: image22,
+      description: "Faro_Entallada",
+    },
+    {
       name: "La Pared",
       latitude: 28.224522,
       longitude: -14.226667,
@@ -124,8 +151,15 @@ function Sightseeing(props) {
       name: "Playa de Sotavento",
       latitude: 28.137134,
       longitude: -14.239219,
-      image: image3,
+      image: image23,
       description: "Playa_de_Sotavento",
+    },
+    {
+      name: "Costa Calma",
+      latitude: 28.160134,
+      longitude: -14.226219,
+      image: image20,
+      description: "Costa_Calma",
     },
     {
       name: "Pico de Zarza",

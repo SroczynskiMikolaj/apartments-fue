@@ -57,13 +57,16 @@
 
     .popup-menu {
         position: absolute;
-        top: 72px;
+        top: 70px;
         left: 0;
         width: 100%;
         z-index: 1000;
 
-                @media screen and (min-width: 768px) {
-                    top: 152px;
+                @media screen and (min-width: 480px) and (max-width: 768px) {
+                    top: 150px;
+                }
+                @media screen and (max-width: 1040px) and (min-width: 769px) {
+                    top: 99px;
                 }
         .navigation,
         .languages {
@@ -162,7 +165,7 @@
 
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1040px) {
         .logo-container {
             cursor: pointer;
             padding: 0;
