@@ -152,6 +152,7 @@ i18n
             El_Cotillo: "El Cotillo is a small and quiet town on the west coast with white buildings. It is dominated by peace and tranquility. The area has a typical vacation character. Numerous restaurants and tapas bars located along the coast are a major attraction of the town. It is also a base for surfing and kiteboarding. Nearby is the picturesque El Toston lighthouse.",
             Costa_Calma: "Costa Calma is a quiet and peaceful town at the beginning of the sandy Playa de Jandia beach. The main attractions are the wide, clean beaches. The town features a lot of greenery with numerous palm trees. Costa Calma's location is a very good base for exploring the island and ideal for enjoying beaches and all water sports (surfing, kiteboarding, windsurfing).",
             Faro_Entallada: "Faro de la Entallada is a beautifully located lighthouse with a wonderful museum of African masks and decorations. Admission is free, but the museum is closed on Sundays and Mondays. Heading north toward Puerto del Rosario, it's worth visiting the tiny hamlet of Pozo Negro. Here, there are only a few houses and two small tapas bars serving excellent seafood dishes – peace and quiet abound.",
+            Playa_Liques: "Playa De Agua Liques – a beautiful, remote, and wild place with numerous rock formations. A walking trip from Costa Calma takes about 1 hour. It’s worth spending the entire day on the beach or hiking along the coast while admiring the ocean.",
           },
       },
       pl: {
@@ -280,6 +281,7 @@ i18n
             El_Cotillo: "El Cotillo to nieduże i ciche miasteczko na zachodnim wybrzeżu z białą zabudową. Dominuje cisza i spokój. Okolica ma charakter typowo wypoczynkowy. Liczne restauracje i bary tapas położone wzdłuż wybrzeża są dużą atrakcją miasteczka. Jest to także baza wypadowa do uprawiania surfingu i kite. W pobliżu malowniczo położona latarnia morska El Toston.",
             Costa_Calma: "Costa Calma – ciche i spokojne miasteczko na początku piaszczystej plaży Playa de Jandia. Atrakcją są szerokie czyste plaże. W mieście dużo zieleni z licznymi palmami. Lokalizacja Costa Calma to bardzo dobre miejsce wypadowe do zwiedzania wyspy oraz idealne do korzystanie z plaż i wszelkich sportów wodnych (surf, kite, windsurfing)",
             Faro_Entallada: "Faro de la Entallada – pięknie położona latarnia morska z wspaniałym muzeum masek i dekoracji afrykańskich. Wejście bezpłatne a muzeum nie czynne w niedzielę i poniedziałki. Udając się na północ w kierunku Puerto del Rosario warto odwiedzić malutką osadę Pozo Negro. Tutaj tylko kilka domów dwa małe bary tapas serwujące znakomite potrawy z owoców morza – cisza i spokój.",
+            Playa_Liques: "Playa De Agua Liques –piękne odludne i dzikie miejsce z licznymi formami skalnymi, z Costa Calma piesza wycieczka zajmujące ok 1 godziny, warto spędzić cały dzień na plaży lub wędrówce wzdłuż wybrzeża podziwiając Ocean.",
           },
       },
       de: {
@@ -407,7 +409,8 @@ i18n
             Corralejo: "Corralejo ist eine Stadt im Norden der Insel mit vielen Restaurants, Bars und Geschäften. Dieser Ort ist eher touristisch als entspannend und bei Besuchern von den Britischen Inseln sehr beliebt. Südlich der Stadt liegt der Parque Natural de Corralejo, der ein sehr großes Küstengebiet mit beeindruckenden Dünen umfasst. In der zweiten Novemberwoche ist das jährliche Drachenfestival eine große Attraktion in Corralejo.",
             El_Cotillo: "El Cotillo ist ein kleines und ruhiges Städtchen an der Westküste mit weißen Gebäuden. Es herrschen Ruhe und Frieden vor. Die Gegend hat einen typisch erholsamen Charakter. Zahlreiche Restaurants und Tapas-Bars entlang der Küste sind eine große Attraktion der Stadt. Es ist auch ein Ausgangspunkt für Surfen und Kitesurfen. In der Nähe befindet sich der malerisch gelegene Leuchtturm El Toston.",
             Costa_Calma: "Costa Calma ist eine ruhige und friedliche Stadt am Beginn des Sandstrandes Playa de Jandia. Die Hauptattraktionen sind die breiten, sauberen Strände. Die Stadt ist von viel Grün mit zahlreichen Palmen geprägt. Die Lage von Costa Calma ist ein sehr guter Ausgangspunkt, um die Insel zu erkunden, und ideal, um Strände und alle Wassersportarten (Surfen, Kitesurfen, Windsurfen) zu genießen.",
-            Faro_Entallada: "Faro de la Entallada ist ein wunderschön gelegener Leuchtturm mit einem wunderbaren Museum afrikanischer Masken und Dekorationen. Der Eintritt ist kostenlos, aber das Museum ist sonntags und montags geschlossen. Auf dem Weg nach Norden in Richtung Puerto del Rosario lohnt es sich, das winzige Dorf Pozo Negro zu besuchen. Hier gibt es nur wenige Häuser und zwei kleine Tapas-Bars, die hervorragende Meeresfrüchtegerichte servieren – Ruhe und Frieden herrschen hier vor."
+            Faro_Entallada: "Faro de la Entallada ist ein wunderschön gelegener Leuchtturm mit einem wunderbaren Museum afrikanischer Masken und Dekorationen. Der Eintritt ist kostenlos, aber das Museum ist sonntags und montags geschlossen. Auf dem Weg nach Norden in Richtung Puerto del Rosario lohnt es sich, das winzige Dorf Pozo Negro zu besuchen. Hier gibt es nur wenige Häuser und zwei kleine Tapas-Bars, die hervorragende Meeresfrüchtegerichte servieren – Ruhe und Frieden herrschen hier vor.",
+            Playa_Liques: "Playa De Agua Liques – ein schöner, abgelegener und wilder Ort mit zahlreichen Felsformationen. Eine Wanderung von Costa Calma dauert etwa 1 Stunde. Es lohnt sich, den ganzen Tag am Strand oder beim Wandern entlang der Küste zu verbringen und den Ozean zu bewundern.",
           },
       },
       es: {
@@ -536,6 +539,7 @@ i18n
             El_Cotillo: "El Cotillo es un pequeño y tranquilo pueblo en la costa oeste con edificios blancos. Predominan la paz y la tranquilidad. La zona tiene un carácter típicamente vacacional. Numerosos restaurantes y bares de tapas ubicados a lo largo de la costa son una gran atracción del pueblo. También es una base para practicar surf y kitesurf. Cerca se encuentra el pintoresco faro de El Toston.",
             Costa_Calma: "Costa Calma es un pueblo tranquilo y apacible al comienzo de la playa de arena Playa de Jandia. Las principales atracciones son las amplias y limpias playas. La ciudad cuenta con mucha vegetación con numerosas palmeras. La ubicación de Costa Calma es un muy buen punto de partida para explorar la isla e ideal para disfrutar de las playas y todos los deportes acuáticos (surf, kitesurf, windsurf).",
             Faro_Entallada: "Faro de la Entallada es un faro bellamente ubicado con un maravilloso museo de máscaras y decoraciones africanas. La entrada es gratuita, pero el museo está cerrado los domingos y lunes. Dirigiéndose hacia el norte en dirección a Puerto del Rosario, vale la pena visitar la pequeña aldea de Pozo Negro. Aquí, solo hay unas pocas casas y dos pequeños bares de tapas que sirven excelentes platos de mariscos, en un entorno de paz y tranquilidad.",
+            Playa_Liques: "Playa De Agua Liques – un lugar hermoso, remoto y salvaje con numerosas formaciones rocosas. Una caminata desde Costa Calma toma aproximadamente 1 hora. Vale la pena pasar todo el día en la playa o caminando a lo largo de la costa admirando el océano."
           },
       },
       it: {
@@ -663,7 +667,8 @@ i18n
           El_Cotillo: "El Cotillo è una piccola e tranquilla cittadina sulla costa occidentale con edifici bianchi. Predominano pace e tranquillità. La zona ha un carattere tipicamente vacanziero. Numerosi ristoranti e bar di tapas situati lungo la costa sono una grande attrazione della città. È anche una base per praticare surf e kite. Nelle vicinanze si trova il pittoresco faro di El Toston.",
           Costa_Calma: "Costa Calma è una città tranquilla e pacifica all'inizio della spiaggia sabbiosa Playa de Jandia. Le principali attrazioni sono le ampie e pulite spiagge. La città presenta molta vegetazione con numerose palme. La posizione di Costa Calma è un ottimo punto di partenza per esplorare l'isola ed è ideale per godersi le spiagge e tutti gli sport acquatici (surf, kite, windsurf).",
           Faro_Entallada: "Faro de la Entallada è un faro situato in modo incantevole con un meraviglioso museo di maschere e decorazioni africane. L'ingresso è gratuito, ma il museo è chiuso la domenica e il lunedì. Andando verso nord in direzione di Puerto del Rosario, vale la pena visitare il piccolo villaggio di Pozo Negro. Qui ci sono solo poche case e due piccoli bar di tapas che servono ottimi piatti di frutti di mare – pace e tranquillità ovunque.",
-          },
+          Playa_Liques: "Playa De Agua Liques – un luogo bellissimo, remoto e selvaggio con numerose formazioni rocciose. Una passeggiata da Costa Calma dura circa 1 ora. Vale la pena trascorrere l'intera giornata sulla spiaggia o facendo escursioni lungo la costa ammirando l'oceano."  
+        },
       },
       dk: {
         translation: {
@@ -790,7 +795,8 @@ i18n
           El_Cotillo: "El Cotillo is een klein en rustig stadje aan de westkust met witte gebouwen. Rust en stilte overheersen. De omgeving heeft een typisch vakantiekarakter. Talrijke restaurants en tapasbars langs de kust zijn een grote attractie van de stad. Het is ook een uitvalsbasis voor surfen en kitesurfen. In de buurt ligt de schilderachtige vuurtoren El Toston.",
           Costa_Calma: "Costa Calma is een rustige en vredige stad aan het begin van het zandstrand Playa de Jandia. De belangrijkste attracties zijn de brede, schone stranden. De stad biedt veel groen met talrijke palmbomen. De ligging van Costa Calma is een zeer goed uitgangspunt om het eiland te verkennen en ideaal om te genieten van de stranden en alle watersporten (surfen, kite, windsurfen).",
           Faro_Entallada: "Faro de la Entallada is een prachtig gelegen vuurtoren met een prachtig museum van Afrikaanse maskers en decoraties. Toegang is gratis, maar het museum is gesloten op zondag en maandag. Op weg naar het noorden richting Puerto del Rosario is het de moeite waard om het kleine gehucht Pozo Negro te bezoeken. Hier zijn slechts een paar huizen en twee kleine tapasbars die uitstekende zeevruchtengerechten serveren – rust en stilte overheersen.",
-          },
+          Playa_Liques: "Playa De Agua Liques – een prachtige, afgelegen en wilde plek met talrijke rotsformaties. Een wandeling vanuit Costa Calma duurt ongeveer 1 uur. Het is de moeite waard om de hele dag door te brengen op het strand of langs de kust te wandelen terwijl je de oceaan bewondert."  
+        },
       }
     },
   });

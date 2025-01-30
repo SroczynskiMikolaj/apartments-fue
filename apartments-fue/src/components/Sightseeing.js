@@ -26,6 +26,7 @@ import image20 from "../assets/sightseeing/CostaCalma.jpg";
 import image21 from "../assets/sightseeing/cotillo.jpg";
 import image22 from "../assets/sightseeing/FaroEntalada.jpg";
 import image23 from "../assets/sightseeing/sotavento.jpg";
+import image24 from "../assets/sightseeing/Liques.png";
 import { Icon } from "leaflet";
 import "../styles/Sightseeing.scss";
 
@@ -160,6 +161,13 @@ function Sightseeing(props) {
       longitude: -14.226219,
       image: image20,
       description: "Costa_Calma",
+    },
+    {
+      name: "Playa De Agua Liques",
+      latitude: 28.190134,
+      longitude: -14.256219,
+      image: image24,
+      description: "Playa_Liques",
     },
     {
       name: "Pico de Zarza",
