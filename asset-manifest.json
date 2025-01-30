@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.0ab8c59c.css",
-    "main.js": "/static/js/main.b71fa4cc.js",
+    "main.css": "/static/css/main.bb958a0f.css",
+    "main.js": "/static/js/main.0583c0c8.js",
     "static/js/453.4d7dc99a.chunk.js": "/static/js/453.4d7dc99a.chunk.js",
     "static/media/Picture6.jpg": "/static/media/Picture6.39e2e72c83c342638545.jpg",
+    "static/media/corralejo.jpg": "/static/media/corralejo.1de7b9f4d0fff74f243d.jpg",
     "static/media/2.png": "/static/media/2.e7899d01f7e50370249f.png",
+    "static/media/sotavento.jpg": "/static/media/sotavento.2bced2ce6664f31384d9.jpg",
     "static/media/3.png": "/static/media/3.202c2f2028aabbfc4be9.png",
+    "static/media/cotillo.jpg": "/static/media/cotillo.730f9c0ed3858936444c.jpg",
+    "static/media/FaroEntalada.jpg": "/static/media/FaroEntalada.b47ac969c99a573660f0.jpg",
+    "static/media/Antigua.jpg": "/static/media/Antigua.ad73e0955d0583916e36.jpg",
     "static/media/6.png": "/static/media/6.345811563b6574e6eab8.png",
     "static/media/logo3.png": "/static/media/logo3.664aed90b4a4927dc808.png",
+    "static/media/CostaCalma.jpg": "/static/media/CostaCalma.a62b6e82348c46e047ba.jpg",
     "static/media/Picture15.jpg": "/static/media/Picture15.9664bdc2864adc43334d.jpg",
     "static/media/Picture14.jpg": "/static/media/Picture14.1aa3ff9ca07e51b8b057.jpg",
     "static/media/Picture17.jpg": "/static/media/Picture17.c11043b1358617d18ea0.jpg",
@@ -50,14 +56,13 @@
     "static/media/13.webp": "/static/media/13.b80822dcfb17268e9f24.webp",
     "static/media/Picture16.jpg": "/static/media/Picture16.0d7bedaffe2cc0063963.jpg",
     "static/media/10.webp": "/static/media/10.bb157e108b529e32e0bb.webp",
-    "static/media/facebook-icon.png": "/static/media/facebook-icon.ab9c1f5ef5aad63f7aab.png",
     "index.html": "/index.html",
-    "main.0ab8c59c.css.map": "/static/css/main.0ab8c59c.css.map",
-    "main.b71fa4cc.js.map": "/static/js/main.b71fa4cc.js.map",
+    "main.bb958a0f.css.map": "/static/css/main.bb958a0f.css.map",
+    "main.0583c0c8.js.map": "/static/js/main.0583c0c8.js.map",
     "453.4d7dc99a.chunk.js.map": "/static/js/453.4d7dc99a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0ab8c59c.css",
-    "static/js/main.b71fa4cc.js"
+    "static/css/main.bb958a0f.css",
+    "static/js/main.0583c0c8.js"
   ]
 }
