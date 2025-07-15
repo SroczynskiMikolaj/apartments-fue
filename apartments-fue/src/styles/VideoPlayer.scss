@@ -1,0 +1,23 @@
+@import "styles";
+
+.video-link {
+  text-decoration: none;
+  color: $color-1;
+}
+
+.video-wrapper {
+  iframe {
+    width: 560px;
+    height: 315px;
+
+    @media screen and (max-width: 768px) {
+        width: 560px;
+        height: 315px;
+    }
+
+    @media screen and (max-width: 480px) {
+        width: 350px;
+        height: 200px;
+    }
+  }
+}

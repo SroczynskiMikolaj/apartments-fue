@@ -4,6 +4,7 @@ import Card from "./Card";
 import CityInfo from "./CityInfo";
 import "../styles/Home.scss";
 import separator from "../assets/separator-small-1.png";
+import VideoPlayer from "./VideoPlayer";
 
 function Home(props) {
   const { t } = useTranslation();
@@ -42,6 +43,9 @@ function Home(props) {
         <div className="center">
           <CityInfo />
         </div>
+      </div>
+      <div>
+        <VideoPlayer/>
       </div>
     </>
   );
