@@ -1,0 +1,93 @@
+@import "styles";
+.restaurants-info-container {
+  padding: 1% 15%;
+  @media screen and (max-width: 1024px) {
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 20px;
+  }
+}
+
+.restaurants-container {
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .selected-place {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img,
+    p {
+      // width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      max-height: 500px;
+
+      @media screen and (max-width: 480px) {
+        max-width: 300px;
+      }
+    }
+
+    .description {
+      padding: 20px 0;
+    }
+  }
+}
+.filter-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 10px;
+
+    @media screen and (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 480px) {
+        flex-wrap: wrap;
+    }
+
+    .filter-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 40px;
+        }
+        span {
+            width: 110px;
+        }
+    &.active {
+        background-color: #2c7a7b;
+        // color: white;
+
+        span {
+        color: white;
+        }
+
+        // img {
+        //   filter: brightness(0) invert(1);
+        // }
+    }
+    }
+}
+
+
+

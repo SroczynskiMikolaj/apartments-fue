@@ -36,8 +36,8 @@ function Header() {
         setMenuOpen(false);
     };
 
-    const navigate_fuerteventura = () => {
-        navigate("/Fuerteventura");
+    const navigate_restaurants = () => {
+        navigate("/Restaurants");
         setMenuOpen(false);
     };
 
@@ -92,7 +92,7 @@ function Header() {
                 <div onClick={handleClick}>{t("About_us")}</div>
                 <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
                 <div onClick={navigate_climate}>{t("Climate")}</div>
-                {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
+                <div onClick={navigate_restaurants}>{t("Restaurants")}</div>
                 <div onClick={navigate_commuting}>{t("Commuting")}</div>
                 {/* <div onClick={navigate_contact}>{t("Contact")}</div> */}
             </div>
@@ -122,7 +122,7 @@ function Header() {
                         <div onClick={handleClick}>{t("About_us")}</div>
                         <div onClick={navigate_sightseeing}>{t("Sightseeing")}</div>
                         <div onClick={navigate_climate}>{t("Climate")}</div>
-                        {/* <div onClick={navigate_fuerteventura}>{t("Fuerteventura")}</div> */}
+                        <div onClick={navigate_restaurants}>{t("Restaurants")}</div>
                         <div onClick={navigate_commuting}>{t("Commuting")}</div>
                         {/* <div onClick={navigate_contact}>{t("Contact")}</div> */}
                     </div>

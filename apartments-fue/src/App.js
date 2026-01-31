@@ -19,6 +19,7 @@ import Fuerteventura from "./components/Fuerteventura";
 import Climate from "./components/Climate";
 import Commuting from "./components/Commuting";
 import CookiePopup from "./components/CookiePopup";
+import Restaurants from "./components/Restaurants";
 
 const apartment23Images = importAll(
   require.context("./assets/apartment23", false, /\.(png|jpe?g|svg|webp)$/)
@@ -77,6 +78,7 @@ function App() {
                 }
               />
               <Route path="/Sightseeing" element={<Sightseeing />} />
+              <Route path="/Restaurants" element={<Restaurants />} />
               <Route path="/Fuerteventura" element={<Fuerteventura />} />
               <Route path="/Climate" element={<Climate />} />
               <Route path="/Commuting" element={<Commuting />} />
