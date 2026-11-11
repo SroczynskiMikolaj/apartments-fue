@@ -18,10 +18,15 @@ import image21 from "../assets/sightseeing/cotillo.jpg";
 import image22 from "../assets/sightseeing/FaroEntalada.jpg";
 import image23 from "../assets/sightseeing/sotavento.jpg";
 import image24 from "../assets/sightseeing/Liques.png";
+import image25 from "../assets/sightseeing/Picture12.jpg";
+import noPhoto from "../assets/sightseeing/no_photo.svg";
 
 /**
  * Sightseeing markers, ordered north to south down the island.
- * `description` is an i18n key, not literal copy.
+ * `description` is an i18n key, not literal copy. Four entries use the
+ * `noPhoto` placeholder (Isla de Lobos, Dunas de Corralejo, Montaña de
+ * Tindaya, Punta de Jandía) in place of a real photo — swap it for an
+ * actual one whenever you have it.
  */
 export const SIGHTSEEING_PLACES = [
   {
@@ -30,6 +35,16 @@ export const SIGHTSEEING_PLACES = [
     longitude: -13.89984,
     image: image13,
     description: "Popcorn_beach",
+  },
+  {
+    name: "Isla de Lobos",
+    latitude: 28.7447,
+    longitude: -13.8227,
+    // No dedicated photo yet — see no_photo.svg, a neutral placeholder in
+    // the site's own palette (the restaurants page's "no photo" graphic is
+    // restaurant-branded and wrong for a landmark card).
+    image: noPhoto,
+    description: "Isla_de_Lobos",
   },
   {
     name: "Corralejo",
@@ -46,6 +61,13 @@ export const SIGHTSEEING_PLACES = [
     description: "Calderon_Hondo",
   },
   {
+    name: "Dunas de Corralejo",
+    latitude: 28.705,
+    longitude: -13.83,
+    image: noPhoto,
+    description: "Dunas_de_Corralejo",
+  },
+  {
     name: "El Cotillo",
     latitude: 28.68881,
     longitude: -14.01232,
@@ -53,11 +75,25 @@ export const SIGHTSEEING_PLACES = [
     description: "El_Cotillo",
   },
   {
+    name: "Montaña de Tindaya",
+    latitude: 28.559,
+    longitude: -14.01,
+    image: noPhoto,
+    description: "Montana_Tindaya",
+  },
+  {
     name: "Aguas Verdes",
     latitude: 28.505528,
     longitude: -14.085575,
     image: image9,
     description: "Aguas_Verdes",
+  },
+  {
+    name: "La Alcogida",
+    latitude: 28.4656,
+    longitude: -13.9414,
+    image: image25,
+    description: "La_Alcogida",
   },
   {
     name: "Mirador de Guise y Ayose",
@@ -163,5 +199,12 @@ export const SIGHTSEEING_PLACES = [
     longitude: -14.360014,
     image: image4,
     description: "Pico_de_Zarza",
+  },
+  {
+    name: "Punta de Jandía",
+    latitude: 28.0545,
+    longitude: -14.4879,
+    image: noPhoto,
+    description: "Punta_de_Jandia",
   },
 ];
