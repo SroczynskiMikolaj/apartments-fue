@@ -1,0 +1,188 @@
+@import "variables";
+
+.ocean {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(520px, 72vh, 700px);
+  padding-block: clamp($s-16, 10vw, $s-24);
+  overflow: hidden;
+  background: $stone-900;
+  isolation: isolate;
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      // Slow drift keeps the still photograph from feeling static. Only
+      // seen before the ripple canvas takes over (or at all, if the
+      // driver can't run it) — suppressed by the global reduced-motion rule.
+      animation: ocean-drift 28s ease-in-out infinite alternate;
+    }
+
+    // Sits exactly over the <img> and takes over once the ripple shader
+    // has compiled and the photo has decoded; invisible until then, so a
+    // driver without the needed WebGL support just leaves the plain photo
+    // (with its gentle drift, above) on screen.
+    .ocean__ripple {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      // Pointer events must reach .ocean's own listener (which is what
+      // actually drives the ripple), not get consumed by the canvas.
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s $ease;
+
+      &.is-ready {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Warm scrim, not a neutral grey one — it keeps the band inside the
+  // terracotta palette instead of introducing a cool cast.
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(
+        110deg,
+        rgba(42, 33, 28, 0.82) 0%,
+        rgba(42, 33, 28, 0.6) 42%,
+        rgba(42, 33, 28, 0.18) 74%,
+        rgba(42, 33, 28, 0.08) 100%
+      ),
+      // A warm wash over the whole frame so the photograph sits in the
+      // terracotta palette rather than reading as cold grey sea.
+      linear-gradient(to top, rgba(138, 63, 25, 0.42), rgba(194, 97, 47, 0.12) 60%);
+  }
+
+  &__body {
+    position: relative;
+    max-width: 1180px;
+    color: #fff;
+  }
+
+  &__eyebrow {
+    color: color-mix(in srgb, var(--terra-100) 90%, transparent);
+  }
+
+  &__title {
+    @include display(clamp(2rem, 4.5vw, 3.25rem));
+    color: #fff;
+    max-width: 18ch;
+    margin-top: $s-3;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  &__text {
+    max-width: 56ch;
+    margin-top: $s-5;
+    font-size: $fs-lead;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: $s-2;
+    margin-top: $s-8;
+    padding: $s-2 $s-4;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: $r-full;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    font-size: $fs-xs;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+
+    .material-icons-outlined {
+      font-size: 17px;
+    }
+
+    // No cursor to drag across the water on touch, so don't invite it.
+    // Reduced-motion users keep this: the ripple only moves because they
+    // moved their own cursor, so it's not the kind of motion that setting
+    // is meant to suppress.
+    @media (pointer: coarse) {
+      display: none;
+    }
+  }
+
+  // -----------------------------------------------------------
+  //  Waves
+  // -----------------------------------------------------------
+  &__waves {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px; // hides the hairline seam against the next section
+    height: clamp(70px, 9vw, 130px);
+    pointer-events: none;
+  }
+
+  &__wave {
+    position: absolute;
+    inset: 0;
+    width: 200%; // two tiled copies of the path
+    height: 100%;
+    // The global reset sets `svg { max-width: 100% }`, which silently
+    // clamped this to the container width — so `width: 200%` never took
+    // effect and the translate loop slid the wave off the right edge,
+    // leaving the photo exposed underneath.
+    max-width: none;
+    animation: wave-roll linear infinite;
+
+    path {
+      fill: currentColor;
+    }
+  }
+
+  // Different speeds and directions give the parallax; the furthest
+  // layer is the palest and slowest.
+  &__wave--0 {
+    color: rgba(246, 231, 218, 0.16);
+    animation-duration: 26s;
+  }
+
+  &__wave--1 {
+    color: rgba(246, 231, 218, 0.26);
+    animation-duration: 17s;
+    animation-direction: reverse;
+    bottom: -8px;
+  }
+
+  &__wave--2 {
+    color: var(--clay-50);
+    animation-duration: 11s;
+    bottom: -14px;
+  }
+}
+
+@keyframes wave-roll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ocean-drift {
+  from {
+    transform: scale(1.04) translate3d(-1%, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(1%, -1%, 0);
+  }
+}

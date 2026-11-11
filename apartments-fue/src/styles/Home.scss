@@ -1,24 +1,262 @@
-.home-info-text {
-    display: flex;
-    justify-content: center;
+@import "variables";
 
-    .center {
-        width: 500px;
-        margin: 10px;
-        font-size: 16px;
+// -------------------------------------------------------------
+//  Intro — asymmetric two-column, serif heading beside prose.
+//  The old version was a 500px fixed-width centred text block.
+// -------------------------------------------------------------
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: $s-6;
+
+  &__columns {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp($s-8, 6vw, $s-16);
+    align-items: start;
+
+    @include lg {
+      grid-template-columns: 1fr;
+      gap: $s-6;
     }
+  }
+
+  &__title {
+    @include display($fs-h1);
+    max-width: 20ch;
+  }
+
+  &__text {
+    max-width: none;
+  }
 }
 
-.home-city-info-text {
-    display: flex;
-    justify-content: center;
-
-    .center {
-        width: 700px;
-        margin: 10px;
-        font-size: 16px;
-    }
+// -------------------------------------------------------------
+//  Apartment grid
+// -------------------------------------------------------------
+.apt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp($s-5, 3vw, $s-8);
 }
-.separator {
-    padding: 10px 0;
+
+.apt-card {
+  @include card-surface;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+
+  // Warm highlight that follows the cursor. --mx/--my are written by the
+  // card's pointermove handler; the fallback centres it so the card still
+  // looks right before the pointer has ever been over it.
+  &__glow {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity $dur-mid $ease;
+    background: radial-gradient(
+      220px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--terra-500) 22%, transparent),
+      transparent 70%
+    );
+  }
+
+  &:hover &__glow {
+    opacity: 1;
+  }
+
+  // Touch devices have no hovering cursor to follow.
+  @media (pointer: coarse) {
+    &__glow {
+      display: none;
+    }
+  }
+
+  &__media {
+    position: relative;
+    // Fixed ratio: the cards stay level regardless of source image
+    // dimensions, and the browser reserves the space before load.
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: $clay-200;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $dur-slow $ease-out;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: $s-4;
+    left: $s-4;
+    padding: 6px $s-3;
+    border-radius: $r-full;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    font-size: $fs-xs;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $ink-900;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $s-4;
+    padding: $s-6;
+    flex: 1;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $s-3;
+  }
+
+  &__title {
+    @include display($fs-h3);
+  }
+
+  &__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-2 $s-5;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: $fs-sm;
+    color: $text-subtle;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $s-2;
+      margin: 0;
+    }
+
+    .material-icons-outlined {
+      font-size: 19px;
+      color: $terra-500;
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: $s-2;
+    margin-top: auto;
+    padding-top: $s-4;
+    border-top: 1px solid $border;
+    font-size: $fs-sm;
+    font-weight: 600;
+    color: $terra-600;
+
+    .material-icons-outlined {
+      font-size: 18px;
+      transition: transform $dur-mid $ease;
+    }
+  }
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    border-color: $border-strong;
+    transform: translateY(-3px);
+
+    .apt-card__media img {
+      transform: scale(1.04);
+    }
+
+    .apt-card__cta .material-icons-outlined {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// -------------------------------------------------------------
+//  Highlights
+// -------------------------------------------------------------
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: clamp($s-6, 3vw, $s-10);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
+  margin: 0;
+  padding-top: $s-5;
+  // A hairline above each item instead of a card — lighter, more editorial.
+  border-top: 2px solid $terra-600;
+
+  &__icon {
+    font-size: 30px;
+    color: $terra-600;
+  }
+
+  &__title {
+    font-family: $font-body;
+    font-size: $fs-h4;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  &__text {
+    font-size: $fs-sm;
+    line-height: 1.65;
+    color: $text-muted;
+  }
+}
+
+// -------------------------------------------------------------
+//  Closing CTA
+// -------------------------------------------------------------
+.booking-cta {
+  background: $terra-100;
+  border-top: 1px solid color-mix(in srgb, var(--terra-500) 25%, transparent);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $s-6;
+  }
+
+  &__title {
+    @include display($fs-h2);
+    max-width: 22ch;
+  }
+
+  &__text {
+    margin-top: $s-3;
+    max-width: 48ch;
+    color: $text-muted;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-3;
+  }
 }

@@ -1,160 +1,65 @@
 import { useTranslation, Trans } from "react-i18next";
-import "../styles/styles.scss";
-import i18n from "i18next";
+import WeatherChart from "./WeatherChart";
 import "../styles/Climate.scss";
-import WeatherChart from "./WeatherChart.js"
+
+// Was four hand-written blocks of five <li> each, all identical in shape.
+const SEASONS = [
+  { icon: "filter_vintage", titleKey: "Spring", prefix: "Spring_text" },
+  { icon: "wb_sunny", titleKey: "Summer", prefix: "Summer_text" },
+  { icon: "air", titleKey: "Autumn", prefix: "Autumn_text" },
+  { icon: "ac_unit", titleKey: "Winter", prefix: "Winter_text" },
+];
+
+const POINTS_PER_SEASON = 5;
+
 function Climate() {
   const { t } = useTranslation();
 
   return (
-    <div className="climate-container">
-      <div className="container">
-        <div className="climate-title">
-          <div>{t("Climate_title")}</div>
+    <div className="page climate">
+      <div className="page-head">
+        <div className="page-head__inner">
+          <p className="page-head__eyebrow">{t("Climate_eyebrow")}</p>
+          <h1 className="page-head__title">{t("Climate_title")}</h1>
         </div>
-        <div className="climate-descriptions-container">
-          <div>
-          <Trans i18nKey="Climate_description_1" 
-            components={{
-              }}/>
-          </div>
-          <div className="">
-          <Trans i18nKey="Climate_description_2" 
-            components={{
-              }}/>
-          </div>
-          <div>
-          <Trans i18nKey="Climate_description_3" 
-            components={{
-              }}/>
-          </div>
-        </div>
-        <div className="weather-chart">
-          <WeatherChart></WeatherChart>
-        </div>
-        <div className="four-seasons">
-          <div className="season-header">{t("Spring")}</div>
-          <div className="season-text">
-            <ul>
-              <li>
-              <Trans i18nKey="Spring_text_1" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Spring_text_2" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Spring_text_3" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Spring_text_4" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Spring_text_5" 
-            components={{
-              }}/>
-              </li>
-            </ul>
-          </div>
-          <div className="season-header">{t("Summer")}</div>
-          <div className="season-text">
-          <ul>
-              <li>
-              <Trans i18nKey="Summer_text_1" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Summer_text_2" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Summer_text_3" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Summer_text_4" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Summer_text_5" 
-            components={{
-              }}/>
-              </li>
-            </ul>
-          </div>
+      </div>
 
-          <div className="season-header">{t("Autumn")}</div>
-          <div className="season-text">
-          <ul>
-              <li>
-              <Trans i18nKey="Autumn_text_1" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Autumn_text_2" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Autumn_text_3" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Autumn_text_4" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Autumn_text_5" 
-            components={{
-              }}/>
-              </li>
-            </ul>
-          </div>
+      <div className="u-container climate__body">
+        <div className="climate__intro u-prose">
+          <p>
+            <Trans i18nKey="Climate_description_1" />
+          </p>
+          <p>
+            <Trans i18nKey="Climate_description_2" />
+          </p>
+          <p>
+            <Trans i18nKey="Climate_description_3" />
+          </p>
+        </div>
 
-          <div className="season-header">{t("Winter")}</div>
-          <div className="season-text">
-          <ul>
-              <li>
-              <Trans i18nKey="Winter_text_1" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Winter_text_2" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Winter_text_3" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Winter_text_4" 
-            components={{
-              }}/>
-              </li>
-              <li>
-              <Trans i18nKey="Winter_text_5" 
-            components={{
-              }}/>
-              </li>
-            </ul>
-          </div>
+        <figure className="climate__chart">
+          <WeatherChart />
+          <figcaption>{t("Climate_chart_caption")}</figcaption>
+        </figure>
+
+        <div className="seasons">
+          {SEASONS.map(({ icon, titleKey, prefix }) => (
+            <section className="season" key={titleKey}>
+              <h2 className="season__title">
+                <span className="material-icons-outlined" aria-hidden="true">
+                  {icon}
+                </span>
+                {t(titleKey)}
+              </h2>
+              <ul className="season__list">
+                {Array.from({ length: POINTS_PER_SEASON }, (_, i) => (
+                  <li key={i}>
+                    <Trans i18nKey={`${prefix}_${i + 1}`} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </div>
       </div>
     </div>

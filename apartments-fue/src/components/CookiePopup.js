@@ -1,57 +1,75 @@
-// CookiePopup.js
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../styles/CookiePopup.scss";
 import { useTranslation, Trans } from "react-i18next";
+
+const STORAGE_KEY = "hasAcceptedCookies";
 
 const CookiePopup = ({ setCookieConsent }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
-    const hasAcceptedCookies = localStorage.getItem("hasAcceptedCookies");
-    if (!hasAcceptedCookies) {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === null) {
       setIsOpen(true);
-    } else if (hasAcceptedCookies === "true") {
+    } else if (stored === "true") {
       setCookieConsent(true);
     }
   }, [setCookieConsent]);
 
-  const closePopup = () => {
+  const decide = (accepted) => {
     setIsOpen(false);
-    localStorage.setItem("hasAcceptedCookies", "false");
-    setCookieConsent(false);
+    localStorage.setItem(STORAGE_KEY, String(accepted));
+    setCookieConsent(accepted);
   };
 
-  const acceptCookies = () => {
-    setIsOpen(false);
-    localStorage.setItem("hasAcceptedCookies", "true");
-    setCookieConsent(true);
-  };
+  if (!isOpen) return null;
 
   return (
-    isOpen && (
-      <div className="popup-overlay">
-        <div className="popup-cookies-content">
-          <div className="close-button-wrapper">
-            <button className="cookies-close-button" onClick={closePopup}>
-              X
-            </button>
-          </div>
-          <h2>{t("Privacy_respect")}</h2>
-          <div>
-            <Trans i18nKey="Cookies_consent" 
-            components={{
+    // A bottom sheet rather than a full-screen dimmed overlay. The old
+    // version blacked out the whole page at 80% opacity on first visit,
+    // so the first thing a visitor saw was a modal, not the apartments.
+    <div
+      className="cookie-bar"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="cookie-title"
+    >
+      <div className="cookie-bar__inner">
+        <div className="cookie-bar__text">
+          <h2 className="cookie-bar__title" id="cookie-title">
+            {t("Privacy_respect")}
+          </h2>
+          <p>
+            <Trans
+              i18nKey="Cookies_consent"
+              components={{
                 webpage: <b>fuerteventuracostacalma.eu</b>,
-              }}/>
-          </div>
-          <div className="popup-buttons-wrapper">
-            <button className="cookies-accept-button" onClick={acceptCookies}>
+              }}
+            />
+          </p>
+        </div>
+
+        <div className="cookie-bar__actions">
+          {/* Both choices are explicit and equally prominent. Previously
+              declining meant finding an "X" styled as a red close icon. */}
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => decide(false)}
+          >
+            {t("Decline")}
+          </button>
+          <button
+            type="button"
+            className="btn btn--primary"
+            onClick={() => decide(true)}
+          >
             {t("Accept")}
-            </button>
-          </div>
+          </button>
         </div>
       </div>
-    )
+    </div>
   );
 };
 

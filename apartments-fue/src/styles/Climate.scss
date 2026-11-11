@@ -1,68 +1,83 @@
-.climate-container {
-    padding: 20px 50px;
+@import "variables";
 
-    @media screen and (max-width: 767px) {
-        padding: 20px 30px;
-      }
-    
-      @media screen and (max-width: 480px) {
-        padding: 20px 30px;
-      }
+.climate {
+  &__body {
+    padding-top: clamp($s-10, 6vw, $s-16);
+    display: flex;
+    flex-direction: column;
+    gap: clamp($s-10, 6vw, $s-16);
+  }
 
-    .climate-title {
-        font-weight: 700;
-        font-size: 21px;
+  // .u-prose caps width at the readable measure (~68ch), which read as an
+  // oddly narrow column here since the chart directly below it spans the
+  // full container. The intro now uses the same width as the rest of the
+  // page instead.
+  &__intro {
+    max-width: none;
 
+    p + p {
+      margin-top: $s-5;
     }
+  }
 
-    .climate-descriptions-container {
-        padding-top: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+  &__chart {
+    margin: 0;
+    padding: clamp($s-5, 3vw, $s-8);
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: $r-lg;
+    box-shadow: $shadow-sm;
 
+    figcaption {
+      margin-top: $s-4;
+      font-size: $fs-xs;
+      text-align: center;
+      color: $text-subtle;
     }
-
-    .weather-chart {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 0;
-
-        img {
-            width: 60%;
-
-            @media screen and (max-width: 767px) {
-                width: 100%;
-              }
-            
-              @media screen and (max-width: 480px) {
-                width: 100%;
-              }
-        }
-    }
-
-
-    .four-seasons {
-        padding: 30px;
-        @media screen and (max-width: 767px) {
-            padding: 0;
-          }
-        
-          @media screen and (max-width: 480px) {
-            padding: 0;
-          }
-
-        .season-header {
-            text-align: start;
-            font-weight: 700;
-            font-size: 18px;
-    
-        }
-    
-        .season-text {
-            text-align: start;
-        }
-    }
+  }
 }
 
+// -------------------------------------------------------------
+//  Seasons
+// -------------------------------------------------------------
+// Four seasons, so a 2x2 grid rather than auto-fit — at 3 columns the
+// fourth season drops to its own row and leaves two empty cells.
+.seasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp($s-8, 4vw, $s-12);
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.season {
+  padding-top: $s-5;
+  border-top: 2px solid $terra-600;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: $s-3;
+    @include display($fs-h3);
+    margin-bottom: $s-4;
+
+    .material-icons-outlined {
+      font-size: 24px;
+      color: $terra-500;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 1.1em;
+    font-size: $fs-sm;
+    line-height: 1.65;
+    color: $text-muted;
+
+    li::marker {
+      color: $terra-500;
+    }
+  }
+}

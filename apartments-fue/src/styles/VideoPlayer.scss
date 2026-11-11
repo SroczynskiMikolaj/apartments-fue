@@ -1,23 +1,36 @@
-@import "styles";
+@import "variables";
 
-.video-link {
-  text-decoration: none;
-  color: $color-1;
-}
+.video {
+  margin: 0;
+  max-width: 900px;
+  margin-inline: auto;
 
-.video-wrapper {
-  iframe {
-    width: 560px;
-    height: 315px;
+  // Was a hardcoded 560x315 iframe that stayed 560px wide down to the
+  // 480px breakpoint, so it overflowed the viewport on most phones.
+  &__frame {
+    aspect-ratio: 16 / 9;
+    border-radius: $r-lg;
+    overflow: hidden;
+    background: $ink-900;
+    box-shadow: $shadow-lg;
 
-    @media screen and (max-width: 768px) {
-        width: 560px;
-        height: 315px;
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
+  }
 
-    @media screen and (max-width: 480px) {
-        width: 350px;
-        height: 200px;
-    }
+  &__caption {
+    margin-top: $s-4;
+    text-align: center;
+    font-size: $fs-sm;
+    color: $text-subtle;
+  }
+
+  &__link {
+    color: $terra-600;
+    font-weight: 500;
   }
 }

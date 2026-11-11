@@ -1,79 +1,75 @@
- @import './styles/variables.scss';
+// App.scss sits in src/, not src/styles/, so this needs the path.
+@import "./styles/variables";
 
 .App {
-  text-align: center;
-
-  .content {
-    background: $color-4;
-
-    .title-app {
-      font-size: 32px;
-      font-weight: bold;
-      padding: 20px 0;
-    }
-  } 
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-home {
-  background-color: $color-4;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px 0;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  // The old shell set `text-align: center` here, which centred every
+  // paragraph on the site. Alignment is now a per-component decision.
+  text-align: left;
+}
 
-  @media screen and (max-width: 1024px) {
-    flex-wrap: wrap;
-  }
+.app-main {
+  flex: 1;
+  // Reserves space for the fixed header. The home hero cancels this out
+  // with a negative margin so the photo bleeds under the transparent bar.
+  padding-top: var(--header-h);
+}
 
-  @media screen and (max-width: 768px) {
+// -------------------------------------------------------------
+//  Page scaffolding shared by the content pages
+//  (Sightseeing, Restaurants, Climate, Commuting, Fuerteventura)
+// -------------------------------------------------------------
+.page {
+  padding-bottom: clamp($s-16, 10vw, $s-24);
+}
+
+// Compact banner at the top of an interior page: eyebrow, serif title,
+// optional lead paragraph, on the deep ocean ground.
+.page-head {
+  background: $stone-900;
+  color: $text-invert;
+  padding-block: clamp($s-10, 7vw, $s-16);
+
+  &__inner {
+    @include container;
+    display: flex;
     flex-direction: column;
-    .card {
-      .image {
-        max-width: 350px !important;
-      }
-    }
+    align-items: flex-start;
+    gap: $s-4;
   }
 
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-
-    .card {
-      .image {
-        max-width: 350px !important;
-      }
-    }
+  &__eyebrow {
+    @include eyebrow;
+    color: color-mix(in srgb, var(--terra-100) 80%, transparent);
   }
 
-  .card {
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 0px 0px 16px rgba(4,4,4,.1);
-    border-radius: 15px;
-    margin: 10px;
+  &__title {
+    @include display($fs-h1);
+    color: $text-invert;
+    max-width: 24ch;
+  }
 
-    &:hover {
-      box-shadow: 0px 0px 48px rgba(4, 4, 4, 0.25);
-    }
-    .image{
-          max-width: 500px;
-          border-radius: 15px 15px 0 0;;
-    }
+  &__lead {
+    max-width: 62ch;
+    font-size: $fs-lead;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--terra-100) 88%, transparent);
 
-    .title {
-      display: flex;
-      font-size: 24px;
-      color: $black;
-      padding: 10px;
-      justify-content: center;
-
-      &:hover {
-        color: $color-1;
-      }
+    p + p {
+      margin-top: $s-4;
     }
-  };
+  }
+}
+
+// Standard prose body for the text-heavy pages.
+.page-body {
+  @include container;
+  padding-top: clamp($s-10, 6vw, $s-16);
+
+  > * + * {
+    margin-top: $s-5;
+  }
 }

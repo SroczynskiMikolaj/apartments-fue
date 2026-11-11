@@ -1,0 +1,192 @@
+@import "variables";
+
+.explorer {
+  @include container;
+  padding-top: clamp($s-8, 5vw, $s-12);
+
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-2;
+    justify-content: center;
+    margin-bottom: clamp($s-6, 4vw, $s-10);
+  }
+
+  // Map and detail side by side on desktop, stacked on tablet and below.
+  // The old layout used flex-wrap with a 600x700px fixed-size map, which
+  // overflowed horizontally on any screen under ~640px.
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp($s-6, 3vw, $s-10);
+    align-items: start;
+
+    @include lg {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__map {
+    .leaflet-container {
+      height: clamp(420px, 68vh, 700px);
+      width: 100%;
+      border-radius: $r-lg;
+      border: 1px solid $border;
+      box-shadow: $shadow-md;
+      font-family: $font-body;
+      background: $clay-100;
+      z-index: 0; // keeps Leaflet panes under the fixed header
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: $r-sm;
+      box-shadow: $shadow-lg;
+    }
+
+    .leaflet-popup-content {
+      margin: $s-3 $s-4;
+      font-size: $fs-sm;
+      font-weight: 500;
+    }
+  }
+
+  &__count {
+    margin-top: $s-3;
+    font-size: $fs-xs;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $text-subtle;
+  }
+
+  &__detail {
+    position: sticky;
+    top: calc(var(--header-h) + #{$s-6});
+
+    @include lg {
+      position: static;
+    }
+  }
+}
+
+// -------------------------------------------------------------
+//  Category filter chips
+// -------------------------------------------------------------
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: $s-2;
+  min-height: 44px;
+  padding: $s-2 $s-4;
+  border: 1px solid $border-strong;
+  border-radius: $r-full;
+  background: $surface;
+  font-size: $fs-sm;
+  font-weight: 500;
+  color: $text-muted;
+  cursor: pointer;
+  transition: background-color $dur-fast $ease, border-color $dur-fast $ease,
+    color $dur-fast $ease, box-shadow $dur-fast $ease;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    border-color: $terra-500;
+    color: $text;
+  }
+
+  // The old active style was a hard #2c7a7b background behind a dark icon
+  // with white text — low contrast and off-palette.
+  &.is-active {
+    background: $stone-900;
+    border-color: $stone-900;
+    color: #fff;
+    box-shadow: $shadow-sm;
+  }
+}
+
+// -------------------------------------------------------------
+//  Selected place card
+// -------------------------------------------------------------
+.place-card {
+  @include card-surface;
+  overflow: hidden;
+
+  &__media {
+    aspect-ratio: 3 / 2;
+    background: $clay-200;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $s-3;
+    padding: clamp($s-5, 3vw, $s-6);
+  }
+
+  &__title {
+    @include display($fs-h3);
+  }
+
+  &__text {
+    font-size: $fs-sm;
+    line-height: 1.7;
+    color: $text-muted;
+  }
+
+  &__directions {
+    display: inline-flex;
+    align-items: center;
+    gap: $s-2;
+    align-self: flex-start;
+    min-height: 44px;
+    font-size: $fs-sm;
+    font-weight: 600;
+    color: $terra-600;
+    text-decoration: none;
+
+    .material-icons-outlined {
+      font-size: 19px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+  }
+
+  // Empty state
+  &--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $s-3;
+    min-height: 280px;
+    padding: $s-8;
+    text-align: center;
+    background: $surface-sunken;
+    border-style: dashed;
+    box-shadow: none;
+    color: $text-subtle;
+
+    .material-icons-outlined {
+      font-size: 34px;
+      color: $terra-500;
+    }
+
+    p {
+      max-width: 28ch;
+      font-size: $fs-sm;
+    }
+  }
+}

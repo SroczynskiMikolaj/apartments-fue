@@ -1,0 +1,180 @@
+@import "variables";
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  // Cancels .app-main's header padding so the photo runs under the
+  // transparent header, then re-adds it as padding for the content.
+  margin-top: calc(var(--header-h) * -1);
+  min-height: min(760px, 92vh);
+  padding-top: var(--header-h);
+  overflow: hidden;
+  background: $stone-900;
+  isolation: isolate;
+  @include md {
+    min-height: min(620px, 88vh);
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    // Sits exactly over the <img> and takes over once the ripple shader
+    // has compiled and the photo has decoded; invisible until then, so a
+    // driver without the needed WebGL support just leaves the plain photo
+    // on screen.
+    .hero__ripple {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      // Pointer events must reach .hero's own listener (which is what
+      // actually drives the ripple), not get consumed by the canvas.
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s $ease;
+
+      &.is-ready {
+        opacity: 1;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      // A slow, barely perceptible zoom-in on load. Enough to feel alive,
+      // not enough to read as an animation.
+      animation: hero-settle 1.6s $ease-out both;
+    }
+  }
+
+  // Two-stop scrim: darkens the bottom for the headline, and a touch at
+  // the top so the header nav stays readable against bright sky.
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgba(16, 20, 19, 0.88) 0%,
+      rgba(16, 20, 19, 0.55) 32%,
+      rgba(16, 20, 19, 0.12) 62%,
+      rgba(16, 20, 19, 0.3) 100%
+    );
+  }
+
+  &__body {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $s-4;
+    padding-top: clamp($s-16, 14vh, $s-24);
+    padding-bottom: $s-10;
+    color: #fff;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: $fs-display;
+    font-weight: 400;
+    // Fraunces' optical-size axis: at display sizes the higher value gives
+    // finer strokes and tighter spacing, which is what makes it read as a
+    // masthead rather than body copy scaled up.
+    font-variation-settings: "opsz" 120, "SOFT" 20;
+    font-optical-sizing: auto;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #fff;
+    max-width: 18ch;
+    text-wrap: balance;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  &__lead {
+    max-width: 46ch;
+    font-size: $fs-lead;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-3;
+    margin-top: $s-4;
+  }
+
+  // Thin stat strip pinned to the bottom edge of the image.
+  &__facts {
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(36, 28, 23, 0.42);
+    backdrop-filter: blur(8px);
+  }
+
+  &__facts-list {
+    @include container;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $s-4;
+    padding-block: $s-5;
+    // No `margin: 0` here — the global reset already zeroes a <dl>'s
+    // default margin, and re-stating it as a shorthand would overwrite
+    // the `margin-inline: auto` the container() mixin just set above,
+    // which is what centers this row. That's exactly what was pinning
+    // the stats flush to the left edge instead of under the hero content.
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $s-5 $s-4;
+    }
+  }
+
+  &__fact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #fff;
+
+    dt {
+      order: 2;
+      font-size: $fs-xs;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    dd {
+      order: 1;
+      margin: 0;
+      font-family: $font-display;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.06);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

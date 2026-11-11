@@ -4,32 +4,26 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./App.scss";
 import ReactGA from "react-ga4";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import apartment1 from "./assets/apartment23/1.webp";
-import apartment2 from "./assets/apartment27/1.webp";
 import Home from "./components/Home";
 import Apartment from "./components/Apartment";
-import separator from "./assets/separator-small-1.png";
 import Sightseeing from "./components/Sightseeing";
 import Fuerteventura from "./components/Fuerteventura";
 import Climate from "./components/Climate";
 import Commuting from "./components/Commuting";
 import CookiePopup from "./components/CookiePopup";
 import Restaurants from "./components/Restaurants";
-
-const apartment23Images = importAll(
-  require.context("./assets/apartment23", false, /\.(png|jpe?g|svg|webp)$/)
-);
-const apartment27Images = importAll(
-  require.context("./assets/apartment27", false, /\.(png|jpe?g|svg|webp)$/)
-);
+import ScrollToTop from "./components/ScrollToTop";
+import { APARTMENTS } from "./data/apartments";
 
 function App() {
   const [cookieConsent, setCookieConsent] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (cookieConsent) {
@@ -39,44 +33,23 @@ function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
+      <ScrollToTop />
       <div className="App">
+        <a className="skip-link" href="#main">
+          {t("Skip_to_content")}
+        </a>
         <Header />
-        <div className="content">
-          <div className="title-app">Costa Calma Apartments Fuerteventura</div>
-          <CookiePopup setCookieConsent={setCookieConsent} />
-          <img src={separator} alt="separator" />
+        <main id="main" className="app-main">
           <AnalyticsWrapper cookieConsent={cookieConsent}>
             <Routes>
-              <Route
-                path="/"
-                element={<Home image1={apartment1} image2={apartment2} />}
-              />
-              <Route
-                path="/colores_de_fuerteventura_23"
-                element={
-                  <Apartment
-                    title="Colores de Fuerteventura 23"
-                    images={apartment23Images}
-                    number={27}
-                    people={4}
-                    beds={3}
-                    surface={45}
-                  />
-                }
-              />
-              <Route
-                path="/colores_de_fuerteventura_27"
-                element={
-                  <Apartment
-                    title="Colores de Fuerteventura 27"
-                    images={apartment27Images}
-                    number={23}
-                    people={4}
-                    beds={3}
-                    surface={45}
-                  />
-                }
-              />
+              <Route path="/" element={<Home />} />
+              {APARTMENTS.map((apartment) => (
+                <Route
+                  key={apartment.slug}
+                  path={`/${apartment.slug}`}
+                  element={<Apartment apartment={apartment} />}
+                />
+              ))}
               <Route path="/Sightseeing" element={<Sightseeing />} />
               <Route path="/Restaurants" element={<Restaurants />} />
               <Route path="/Fuerteventura" element={<Fuerteventura />} />
@@ -84,18 +57,12 @@ function App() {
               <Route path="/Commuting" element={<Commuting />} />
             </Routes>
           </AnalyticsWrapper>
-          <img src={separator} alt="separator" />
-        </div>
+        </main>
         <Footer />
+        <CookiePopup setCookieConsent={setCookieConsent} />
       </div>
     </Router>
   );
-}
-
-function importAll(r) {
-  let images = [];
-  r.keys().forEach((key) => images.push(r(key)));
-  return images;
 }
 
 function AnalyticsWrapper({ children, cookieConsent }) {

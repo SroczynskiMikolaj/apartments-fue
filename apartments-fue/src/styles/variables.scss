@@ -1,16 +1,13 @@
-$black: #040404;
-$white: #fff;
-$grey: #f3f3f3;
-$golden: #ffd700;
-$pink: #ffc0cb;
-$shine: 0 0 10px rgba(255, 215, 0, 0.5);
-$hover: rgba(255, 215, 0, 0.5);
+// =============================================================
+//  Component-sheet entry point.
+//  Emits no CSS, so importing it from every component sheet is free.
+//
+//  The old $color-1 .. $color-5 aliases are gone: the names carried no
+//  meaning, which is why the previous sheets kept hardcoding hexes next
+//  to them. Every sheet now uses the semantic tokens from _tokens.scss.
+// =============================================================
 
-$color-1: #FF9F1C;
-$color-2: #FFBF69;
-$color-3: #FFFFFF;
-$color-4: #f1f8f7;;
-$color-5: #2EC4B6;
+@import "tokens";
 
 $font-weight-600: 600;
 $font-weight-500: 500;

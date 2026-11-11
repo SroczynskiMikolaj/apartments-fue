@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// Icon font loaded once here rather than from each component that uses it.
+import 'material-icons/iconfont/material-icons.css';
+import './styles/global.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./i18n/config.ts"

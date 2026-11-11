@@ -1,11 +1,79 @@
-.island-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 10px 25px;
+@import "variables";
 
-    .island-info{
-        font-weight: 600;
+.island {
+  &__body {
+    // A single reading column — the old page ran full-bleed text at
+    // `padding: 10px 25px`, giving ~150-character lines on a desktop.
+    max-width: 74ch;
+    padding-top: clamp($s-10, 6vw, $s-16);
+  }
+
+  &__section + &__section {
+    margin-top: clamp($s-8, 5vw, $s-12);
+  }
+
+  &__heading {
+    @include display($fs-h2);
+    margin-bottom: $s-4;
+  }
+
+  p {
+    font-size: $fs-body;
+    line-height: 1.75;
+    color: $text-muted;
+
+    + p {
+      margin-top: $s-5;
     }
-}
+  }
 
+  &__why {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: why;
+
+    li {
+      counter-increment: why;
+      position: relative;
+      padding-left: $s-12;
+      line-height: 1.7;
+      color: $text-muted;
+
+      + li {
+        margin-top: $s-5;
+      }
+
+      // Oldstyle serif numerals in place of a default decimal marker.
+      &::before {
+        content: counter(why);
+        position: absolute;
+        left: 0;
+        top: -0.1em;
+        font-family: $font-display;
+        font-size: 1.75rem;
+        font-weight: 500;
+        line-height: 1;
+        color: $terra-500;
+      }
+    }
+  }
+
+  // Pull-quote style close.
+  &__closing {
+    margin-top: clamp($s-12, 7vw, $s-20);
+    padding: clamp($s-6, 4vw, $s-10);
+    background: $terra-100;
+    border-left: 3px solid $terra-600;
+    border-radius: 0 $r-md $r-md 0;
+
+    h2 {
+      @include display($fs-h3);
+      margin-bottom: $s-3;
+    }
+
+    p {
+      color: $stone-900;
+    }
+  }
+}

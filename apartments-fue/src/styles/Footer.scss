@@ -1,28 +1,112 @@
-@import "styles";
+@import "variables";
 
-.footer-container {
-    width: 100%;
-    background-color: $black;
+.site-footer {
+  background: $ink-900;
+  color: color-mix(in srgb, var(--clay-50) 72%, transparent);
+  font-size: $fs-sm;
 
-    .text {
-        color: $white;
-        padding: 16px;
-        text-align: center;
-        .contact-us {
-            font-size: 20px;
-            color: $color-1
-        }
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1.2fr;
+    gap: clamp($s-8, 5vw, $s-16);
+    padding-block: clamp($s-12, 7vw, $s-20);
+
+    @include lg {
+      grid-template-columns: 1fr 1fr;
     }
 
-    .footer-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-        a {
-            color: $white;
-        }
-        
+    @include md {
+      grid-template-columns: 1fr;
+      gap: $s-10;
     }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $s-4;
+    align-items: flex-start;
+
+    img {
+      width: 52px;
+      height: auto;
+    }
+  }
+
+  &__tagline {
+    max-width: 34ch;
+    font-family: $font-display;
+    font-size: $fs-h3;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: $clay-50;
+  }
+
+  &__heading {
+    @include eyebrow;
+    color: color-mix(in srgb, var(--clay-300) 85%, transparent);
+    margin-bottom: $s-4;
+    font-size: $fs-xs;
+  }
+
+  &__host {
+    margin-bottom: $s-3;
+    color: $clay-50;
+    font-weight: 500;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 0;
+
+    + li {
+      margin-top: $s-3;
+    }
+  }
+
+  &__nav a,
+  &__contact a {
+    color: inherit;
+    text-decoration: none;
+    transition: color $dur-fast $ease;
+    overflow-wrap: anywhere;
+
+    &:hover {
+      color: $terra-500;
+    }
+
+    &:focus-visible {
+      outline-color: $clay-50;
+    }
+  }
+
+  &__contact li {
+    display: flex;
+    align-items: center;
+    gap: $s-3;
+
+    .material-icons-outlined {
+      flex: none;
+      font-size: 18px;
+      color: $terra-500;
+    }
+  }
+
+  &__base {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    p {
+      @include container;
+      padding-block: $s-5;
+      font-size: $fs-xs;
+      color: color-mix(in srgb, var(--clay-50) 50%, transparent);
+    }
+  }
 }

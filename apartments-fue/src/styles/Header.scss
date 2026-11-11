@@ -1,241 +1,301 @@
-@import "styles";
+@import "variables";
 
-.header-container {
-    background-color: $black;
+.site-header {
+  // Always fixed. Toggling between fixed and sticky on scroll would pull
+  // the header in and out of flow and shift the page by its own height.
+  // `.app-main` reserves the space with padding-top instead.
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 900;
+  background: $stone-900;
+  color: $text-invert;
+  transition: background-color $dur-mid $ease, box-shadow $dur-mid $ease,
+    backdrop-filter $dur-mid $ease;
+
+  &__inner {
+    @include container;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: $s-6;
+    min-height: var(--header-h);
+  }
 
-    .logo-container {
-        padding: 0 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        .logo {
-            img {
-                max-width: 100px;
-                height: auto;
-                @media screen and (max-width: 768px) {
-                    max-width: 150px;
-                    height: auto;
-                }
-                @media screen and (max-width: 480px) {
-                    max-width: 70px;
-                    height: auto;
-                }
-            }
-        }
+  &__desktop {
+    display: flex;
+    align-items: center;
+    gap: clamp($s-6, 3vw, $s-10);
 
-        .logo_title {
-            img {
-                @media screen and (max-width: 768px) {
-                    max-width: 200px;
-                }
-                @media screen and (max-width: 480px) {
-                    max-width: 200px;
-                }
-            }
-        }
-
-        .title {
-            padding: 0 20px;
-        }
+    @include lg {
+      display: none;
     }
+  }
 
-    .pink {
-        color: $pink;
-    }
+  // Floats transparently over the home hero until the user scrolls. The
+  // gradient keeps the white nav legible against bright sky in the photo.
+  &.is-over-hero {
+    background: transparent;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(42, 33, 28, 0.6),
+      transparent
+    );
+  }
 
-    .golden {
-        color: $golden;
-        text-shadow: $shine;
-    }
-    .hamburger-menu {
-        display: none;
-    }
-
-    .popup-menu {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        background-color: $black;
-
-                @media screen and (min-width: 480px) and (max-width: 768px) {
-                    top: 150px;
-                }
-                @media screen and (max-width: 1040px) and (min-width: 769px) {
-                    top: 99px;
-                }
-        .navigation,
-        .languages {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: $white;
-            cursor: pointer;
-
-            .language-option {
-                display: flex;
-                flex-direction: column;
-
-                .flag {
-                    svg {
-                        width: 30px;
-                        height: 20px;
-                    }
-                }
-            }
-
-            .flags-container {
-                display: flex;
-            }
-        }
-
-        .languages {
-            justify-content: center;
-            cursor: pointer;
-            flex-direction: column;
-
-            .language-option {
-                display: flex;
-                flex-direction: column;
-
-                .flag {
-                    svg {
-                        width: 30px;
-                        height: 20px;
-                    }
-                }
-            }
-            .menu-separator {
-                background-color: $white;
-                height: 1px;
-                width: 80%;
-            }
-
-            .flags-container {
-                display: flex;
-                gap: 10px;
-            }
-        }
-
-        .navigation {
-            flex-direction: column;
-        }
-    }
-
-    .navigation {
-        gap: 20px !important;
-        font-size: 21px;
-    }
-
-    .navigation,
-    .languages {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: $white;
-        margin-right: 10px;
-        cursor: pointer;
-
-        div {
-            &:hover {
-                color: $color-2;
-                font-weight: $font-weight-600;
-            }
-        }
-
-        .language-option {
-            display: flex;
-            flex-direction: column;
-
-            .flag {
-                svg {
-                    width: 30px;
-                    height: 20px;
-                }
-            }
-        }
-
-        .language-option.selected {
-            color: $color-5;
-        }
-
-    }
-
-    @media screen and (max-width: 1040px) {
-        .logo-container {
-            cursor: pointer;
-            padding: 0;
-        }
-        
-        .hamburger-menu {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            margin-right: 10px;
-
-            .line {
-                width: 30px;
-                height: 3px;
-                background-color: white;
-                margin: 3px 0;
-                transition: all 0.3s ease;
-            }
-
-            &.open .line:first-child {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            &.open .line:nth-child(2) {
-                opacity: 0;
-            }
-
-            &.open .line:last-child {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-        }
-
-        .navigation,
-        .languages {
-            display: none;
-            width: 100%;
-            padding: 10px 0;
-            background-color: $black;
-
-            .language-option {
-                display: flex;
-                flex-direction: column;
-
-                .flag {
-                    svg {
-                        width: 30px;
-                        height: 20px;
-                    }
-                }
-            }
-        }
-
-        &.open .navigation,
-        &.open .languages {
-            display: flex;
-            .language-option {
-                display: flex;
-                flex-direction: column;
-
-                .flag {
-                    svg {
-                        width: 30px;
-                        height: 20px;
-                    }
-                }
-            }
-        }
-    }
+  &.is-scrolled {
+    background: color-mix(in srgb, var(--stone-900) 88%, transparent);
+    backdrop-filter: blur(12px) saturate(1.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), $shadow-md;
+  }
 }
 
+// -------------------------------------------------------------
+//  Brand
+// -------------------------------------------------------------
+.brand {
+  display: flex;
+  align-items: center;
+  gap: $s-3;
+  padding: $s-2 0;
+  text-decoration: none;
+  color: inherit;
+
+  &__mark {
+    width: 48px;
+    height: auto;
+
+    @include sm {
+      width: 38px;
+    }
+  }
+
+  &__word {
+    max-width: 190px;
+    height: auto;
+
+    @include md {
+      max-width: 150px;
+    }
+
+    @include sm {
+      max-width: 125px;
+    }
+  }
+
+  &:hover &__word,
+  &:hover &__mark {
+    opacity: 0.85;
+  }
+}
+
+// -------------------------------------------------------------
+//  Navigation
+// -------------------------------------------------------------
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp($s-4, 2vw, $s-8);
+}
+
+.nav__link {
+  position: relative;
+  padding: $s-2 0;
+  color: inherit;
+  font-size: $fs-sm;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color $dur-fast $ease;
+
+  // Underline grows from the centre. Replaces the old hover handler that
+  // switched font-weight, which reflowed the whole nav on every hover.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform $dur-mid $ease;
+  }
+
+  &:hover {
+    color: $text-invert;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &.is-active {
+    color: $text-invert;
+
+    &::after {
+      transform: scaleX(1);
+      background: $terra-500;
+      height: 2px;
+    }
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+// -------------------------------------------------------------
+//  Language switcher
+// -------------------------------------------------------------
+.langs__list {
+  display: flex;
+  align-items: center;
+  gap: $s-1;
+}
+
+.lang {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+  padding: $s-2 $s-1;
+  border: 1px solid transparent;
+  border-radius: $r-sm;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity $dur-fast $ease, background-color $dur-fast $ease,
+    border-color $dur-fast $ease;
+
+  &__flag svg {
+    display: block;
+    width: 24px;
+    height: 16px;
+    border-radius: 1px;
+  }
+
+  &__code {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  &:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  // Previously the selected flag was tinted teal-on-black, which was all
+  // but invisible. Now it's full opacity with an explicit outline.
+  &.is-selected {
+    opacity: 1;
+    border-color: $terra-500;
+    background: rgba(194, 97, 47, 0.22);
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+// -------------------------------------------------------------
+//  Mobile drawer
+// -------------------------------------------------------------
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: $r-sm;
+  background: none;
+  cursor: pointer;
+
+  @include lg {
+    display: flex;
+  }
+
+  &__line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform $dur-mid $ease, opacity $dur-fast $ease;
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+.site-header.is-open .menu-toggle {
+  &__line:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  &__line:nth-child(2) {
+    opacity: 0;
+  }
+
+  &__line:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+// The old drawer was absolutely positioned at a hardcoded top offset that
+// had to be re-guessed per breakpoint (70px / 99px / 150px). It's now a
+// sibling in normal flow, so it sits under the bar automatically.
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: $s-5;
+  padding: $s-5 clamp($s-4, 4vw, $s-10) $s-8;
+  background: $stone-900;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: $shadow-lg;
+
+  @include above-lg {
+    display: none;
+  }
+
+  &__rule {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .nav--drawer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    .nav__link {
+      padding: $s-3 0;
+      font-size: $fs-lead;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      &::after {
+        display: none;
+      }
+
+      &.is-active {
+        color: $terra-500;
+      }
+    }
+  }
+
+  .langs--drawer .langs__list {
+    flex-wrap: wrap;
+    gap: $s-2;
+  }
+}

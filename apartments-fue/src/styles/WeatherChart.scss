@@ -1,11 +1,91 @@
-.weather-chart-container {
-    height: 500px;
-    width: 500px;
-    @media screen and (max-width: 767px) {
-        height: 400px;
+@import "variables";
+
+.weather {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: clamp($s-6, 4vw, $s-10);
+
+  &__panel {
+    min-width: 0;
+  }
+
+  &__title {
+    @include eyebrow;
+    margin-bottom: $s-4;
+  }
+
+  // Was a fixed 500x500px box. Now it fills its column and keeps a
+  // sensible ratio, so the plot never overflows on a phone.
+  &__plot {
+    position: relative;
+    height: clamp(260px, 34vw, 340px);
+  }
+
+  // The table spans the full grid width beneath both charts.
+  &__table {
+    grid-column: 1 / -1;
+    font-size: $fs-sm;
+
+    summary {
+      display: inline-flex;
+      align-items: center;
+      gap: $s-2;
+      padding: $s-2 0;
+      color: $terra-600;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:focus-visible {
+        @include focus-ring(2px);
       }
-    
-      @media screen and (max-width: 480px) {
-        height: 400px;
-      }
+    }
+
+    &-scroll {
+      // Twelve month columns will not fit on a phone; the table scrolls
+      // inside its own box rather than pushing the page sideways.
+      overflow-x: auto;
+      margin-top: $s-4;
+      border: 1px solid $border;
+      border-radius: $r-md;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 640px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th,
+    td {
+      padding: $s-2 $s-3;
+      text-align: right;
+      white-space: nowrap;
+      border-bottom: 1px solid $border;
+    }
+
+    thead th {
+      font-size: $fs-xs;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $text-subtle;
+      background: $surface-sunken;
+    }
+
+    tbody th {
+      text-align: left;
+      font-weight: 500;
+      color: $text;
+    }
+
+    td {
+      color: $text-muted;
+    }
+
+    tbody tr:last-child th,
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+  }
 }

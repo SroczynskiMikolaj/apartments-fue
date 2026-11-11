@@ -1,92 +1,71 @@
-.popup-overlay {
+@import "variables";
+
+// The previous sheet styled the bare `button` element globally (blue
+// background, blue hover), which leaked onto every button on the site.
+// Everything here is scoped to .cookie-bar and uses the shared .btn system.
+
+.cookie-bar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+  bottom: 0;
+  inset-inline: 0;
+  z-index: 1200;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid $border;
+  box-shadow: 0 -10px 40px -16px rgba(36, 28, 23, 0.26);
+  animation: cookie-rise $dur-slow $ease-out both;
 
-.popup-cookies-content {
-  position: absolute;
-  bottom: 50px;
-  width: 90%;
-  height: auto;
-  padding: 0 10px 30px 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  @media screen and (max-width: 1024px) {
-    position: relative;
-    padding: 0 10px 30px 10px;
-    height: auto;
-  }
-
-  @media screen and (max-width: 767px) {
-    position: relative;
-    padding: 0 10px 30px 10px;
-    height: auto;
-  }
-
-  @media screen and (max-width: 480px) {
-    position: relative;
-    padding: 0 10px 30px 10px;
-    height: auto;
-  }
-
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.popup-ul {
-  background-color: #fff;
-  text-align: left;
-}
-.popup-buttons-wrapper {
+  &__inner {
+    @include container;
     display: flex;
-    justify-content: center;
-    gap: 110px;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp($s-5, 4vw, $s-10);
+    padding-block: $s-5;
+    padding-bottom: max(#{$s-5}, env(safe-area-inset-bottom));
 
-
-    .cookies-accept-button {
-        background-color: green;
-        &:hover {
-          background-color: rgb(0, 99, 0);
-        }
+    @include md {
+      flex-direction: column;
+      align-items: stretch;
     }
-}
+  }
 
-.close-button-wrapper {
-  display: flex;
-  justify-content: end;
+  &__text {
+    max-width: 72ch;
 
-  .cookies-close-button {
-    color: red;
-    background-color: white;
-    border: 1px solid red;
-    margin-top: 10px;
-    padding: 2px 5px;
+    p {
+      margin-top: $s-2;
+      font-size: $fs-sm;
+      line-height: 1.6;
+      color: $text-muted;
+    }
+  }
 
-    &:hover {
-      color: white;
-      background-color: red;
+  &__title {
+    @include display($fs-h4);
+    font-family: $font-body;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $s-3;
+    flex: none;
+
+    @include md {
+      .btn {
+        flex: 1;
+      }
     }
   }
 }
 
+@keyframes cookie-rise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

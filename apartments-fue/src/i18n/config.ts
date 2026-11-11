@@ -1,25 +1,42 @@
-import i18n from "i18next";                      
+import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { UI_STRINGS } from "./ui";
 
+const STORAGE_KEY = "preferredLanguage";
+const SUPPORTED = ["en", "pl", "de", "es", "it", "da"];
 
-const userLocale = navigator.language;
+/**
+ * Resolve the starting language: a previous explicit choice wins, then the
+ * browser locale, then English.
+ *
+ * `navigator.language` is a full tag like "pl-PL" or "en-GB", so the region
+ * is stripped before it's matched against SUPPORTED. The old config passed
+ * the full tag straight through as `lng`, which left i18next resolving
+ * "pl-PL" through the fallback chain on every lookup.
+ */
+const detectLanguage = (): string => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && SUPPORTED.includes(stored)) return stored;
+  } catch {
+    // Storage unavailable; fall through to browser detection.
+  }
+
+  const base = (navigator.language || "en").split("-")[0].toLowerCase();
+  return SUPPORTED.includes(base) ? base : "en";
+};
 
 i18n
   .use(initReactI18next)
   .init({
-    // Config options
-
-    // Specifies the default language (locale) used
-    // when a user visits our site for the first time.
-    // We use English here, but feel free to use
-    // whichever locale you want.                   
-    lng: `${userLocale}`,
-
-    // Fallback locale used when a translation is
-    // missing in the active locale. Again, use your
-    // preferred locale here. 
+    lng: detectLanguage(),
+    supportedLngs: SUPPORTED,
+    // Treat "en-GB" and "en-US" as "en" rather than as distinct locales.
+    load: "languageOnly",
     fallbackLng: "en",
-    debug: true,
+    // Was unconditionally true, which logged every missing-key lookup to
+    // the console in production.
+    debug: process.env.NODE_ENV === "development",
     interpolation: {
       escapeValue: false,
     },
@@ -851,7 +868,7 @@ i18n
           Restaurants: "Ristoranti",
         },
       },
-      dk: {
+      da: {
         translation: {
           car: "auto",
           Contact_us: "Neem contact met ons op",
@@ -1017,5 +1034,32 @@ i18n
       }
     },
   });
+
+// Merge in the redesign's UI strings. Kept separate so config.ts doesn't
+// keep growing; en/pl are complete and the rest fall back to en.
+// overwrite=false, so any key already defined above wins.
+Object.entries(UI_STRINGS).forEach(([lng, strings]) => {
+  i18n.addResourceBundle(lng, "translation", strings, true, false);
+});
+
+/**
+ * Persist the choice and keep <html lang> in sync.
+ *
+ * Neither happened before: picking German and reloading dropped you back to
+ * the browser's language, and the document stayed lang="en" whatever was on
+ * screen — which misinforms screen readers and translation tools.
+ */
+const applyLanguage = (lng: string) => {
+  document.documentElement.setAttribute("lang", lng);
+  try {
+    localStorage.setItem(STORAGE_KEY, lng);
+  } catch {
+    // Private browsing / storage disabled — the language still applies for
+    // this session, it just won't be remembered.
+  }
+};
+
+applyLanguage(i18n.resolvedLanguage || "en");
+i18n.on("languageChanged", applyLanguage);
 
 export default i18n;

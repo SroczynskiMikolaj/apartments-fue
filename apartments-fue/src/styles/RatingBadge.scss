@@ -1,0 +1,37 @@
+@import "variables";
+
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $fs-sm;
+  font-weight: 600;
+  color: $text;
+  white-space: nowrap;
+
+  &__star {
+    font-size: 16px;
+    color: $terra-500;
+  }
+
+  &__value {
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__reviews {
+    font-weight: 400;
+    color: $text-subtle;
+  }
+
+  // On the dark apartment-head band, inherit the light text colour instead
+  // of the default dark ink (same reasoning as the global strong/b fix:
+  // a component must not hardcode a colour that only works on one kind of
+  // background).
+  .apartment__head & {
+    color: $text-invert;
+
+    .rating-badge__reviews {
+      color: color-mix(in srgb, var(--terra-100) 85%, transparent);
+    }
+  }
+}

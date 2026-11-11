@@ -1,0 +1,182 @@
+// =============================================================
+//  Design tokens — Sass layer
+//  Emits no CSS. Safe to @import from every stylesheet.
+//  The runtime values live as CSS custom properties in global.scss;
+//  these Sass vars are thin aliases so component styles stay readable.
+// =============================================================
+
+// ---- Colour -------------------------------------------------
+// Volcanic-island palette: clay ground, basalt darks, terracotta accent.
+$clay-50:   var(--clay-50);
+$clay-100:  var(--clay-100);
+$clay-200:  var(--clay-200);
+$clay-300:  var(--clay-300);
+
+$ink-900:   var(--ink-900);
+$ink-700:   var(--ink-700);
+$ink-500:   var(--ink-500);
+$ink-300:   var(--ink-300);
+
+$stone-900: var(--stone-900);
+$stone-700: var(--stone-700);
+$stone-500: var(--stone-500);
+$stone-300: var(--stone-300);
+
+$terra-700: var(--terra-700);
+$terra-600: var(--terra-600);
+$terra-500: var(--terra-500);
+$terra-100: var(--terra-100);
+
+$surface:        var(--surface);
+$surface-raised: var(--surface-raised);
+$surface-sunken: var(--surface-sunken);
+$border:         var(--border);
+$border-strong:  var(--border-strong);
+
+$text:        var(--text);
+$text-muted:  var(--text-muted);
+$text-subtle: var(--text-subtle);
+$text-invert: var(--text-invert);
+
+// ---- Type ---------------------------------------------------
+$font-display: var(--font-display);
+$font-body:    var(--font-body);
+
+$fs-display: var(--fs-display);
+$fs-h1:      var(--fs-h1);
+$fs-h2:      var(--fs-h2);
+$fs-h3:      var(--fs-h3);
+$fs-h4:      var(--fs-h4);
+$fs-lead:    var(--fs-lead);
+$fs-body:    var(--fs-body);
+$fs-sm:      var(--fs-sm);
+$fs-xs:      var(--fs-xs);
+
+// ---- Space (4px base) ---------------------------------------
+$s-1:  var(--s-1);   //  4px
+$s-2:  var(--s-2);   //  8px
+$s-3:  var(--s-3);   // 12px
+$s-4:  var(--s-4);   // 16px
+$s-5:  var(--s-5);   // 20px
+$s-6:  var(--s-6);   // 24px
+$s-8:  var(--s-8);   // 32px
+$s-10: var(--s-10);  // 40px
+$s-12: var(--s-12);  // 48px
+$s-16: var(--s-16);  // 64px
+$s-20: var(--s-20);  // 80px
+$s-24: var(--s-24);  // 96px
+
+// ---- Radius / elevation / motion ----------------------------
+$r-xs:   var(--r-xs);
+$r-sm:   var(--r-sm);
+$r-md:   var(--r-md);
+$r-lg:   var(--r-lg);
+$r-full: var(--r-full);
+
+$shadow-sm: var(--shadow-sm);
+$shadow-md: var(--shadow-md);
+$shadow-lg: var(--shadow-lg);
+$shadow-xl: var(--shadow-xl);
+
+$ease:      var(--ease);
+$ease-out:  var(--ease-out);
+$dur-fast:  var(--dur-fast);
+$dur-mid:   var(--dur-mid);
+$dur-slow:  var(--dur-slow);
+
+$container: var(--container);
+$measure:   var(--measure);
+
+// ---- Breakpoints --------------------------------------------
+// Single source of truth. The old sheets repeated 1024/768/480
+// with identical bodies; these mixins collapse that duplication.
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1200px;
+
+@mixin sm   { @media (max-width: #{$bp-sm})  { @content; } }
+@mixin md   { @media (max-width: #{$bp-md})  { @content; } }
+@mixin lg   { @media (max-width: #{$bp-lg})  { @content; } }
+@mixin xl   { @media (max-width: #{$bp-xl})  { @content; } }
+@mixin above-md { @media (min-width: #{$bp-md + 1px}) { @content; } }
+@mixin above-lg { @media (min-width: #{$bp-lg + 1px}) { @content; } }
+
+// ---- Helpers ------------------------------------------------
+
+/// Small-caps tracking label used above headings.
+@mixin eyebrow {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $terra-600;
+}
+
+/// Editorial serif heading.
+@mixin display($size: $fs-h2) {
+  font-family: $font-display;
+  font-size: $size;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: $text;
+  text-wrap: balance;
+}
+
+/// Centred layout wrapper.
+@mixin container($width: $container) {
+  width: 100%;
+  max-width: $width;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/// Readable prose column.
+@mixin prose {
+  max-width: $measure;
+  font-size: $fs-body;
+  line-height: 1.7;
+  color: $text-muted;
+  text-align: left;
+}
+
+/// Visible keyboard focus. Applied via :focus-visible only, so mouse
+/// users never see it but keyboard users always do.
+@mixin focus-ring($offset: 3px) {
+  outline: 2px solid $terra-600;
+  outline-offset: $offset;
+  border-radius: $r-xs;
+}
+
+/// Card surface with a lift on hover. Transform is motion-guarded.
+@mixin card-surface {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $dur-mid $ease, transform $dur-mid $ease,
+    border-color $dur-mid $ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow $dur-mid linear;
+  }
+}
+
+/// Thin ornamental rule — the CSS replacement for separator-small-1.png.
+@mixin ornament {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: 1px;
+  margin: $s-8 auto;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-strong) 20%,
+    var(--border-strong) 80%,
+    transparent
+  );
+}

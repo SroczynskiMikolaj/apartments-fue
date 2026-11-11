@@ -1,0 +1,504 @@
+// =============================================================
+//  Global layer: token definitions, reset, base typography.
+//  Imported exactly ONCE, from src/index.js.
+//  Do not @import this from component sheets — the :root block
+//  would be emitted repeatedly.
+// =============================================================
+
+@import "tokens";
+
+:root {
+  // ---- Colour ramps -----------------------------------------
+  // The island is volcanic: black basalt, golden dunes, clay roofs.
+  // Every ramp here is warm — there is no cool tone in the palette.
+
+  // Clay: warm paper ground. Never pure white for large areas — the
+  // warmth is what reads as "cosy" rather than "clinical".
+  --clay-50: #fbf7f1;
+  --clay-100: #f3eadf;
+  --clay-200: #e7dacb;
+  --clay-300: #d6c3ae;
+
+  // Stone: volcanic basalt. Carries white text at any size.
+  --stone-900: #2a211c;
+  --stone-700: #4a3b33;
+  --stone-500: #6b5648;
+  --stone-300: #9c8a7c;
+
+  // Terracotta: the single accent. Deep steps for text and rules,
+  // the bright step for buttons so the CTA still outranks a link.
+  --terra-700: #8a3f19;
+  --terra-600: #a85226;
+  --terra-500: #c2612f;
+  --terra-100: #f6e7da;
+
+  // Ink: warm near-black for body copy.
+  --ink-900: #241c17;
+  --ink-700: #4a3b33;
+  --ink-500: #6b5648;
+  --ink-300: #9c8a7c;
+
+  // ---- Semantic aliases -------------------------------------
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: var(--clay-100);
+  --page: var(--clay-50);
+  --border: var(--clay-200);
+  --border-strong: var(--clay-300);
+
+  --text: var(--ink-900);
+  --text-muted: var(--ink-700);
+  --text-subtle: var(--ink-500);
+  --text-invert: var(--clay-50);
+
+  // ---- Type -------------------------------------------------
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype",
+    "Book Antiqua", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  // Fluid scale. clamp() means no breakpoint-by-breakpoint font
+  // overrides anywhere in the component sheets.
+  //
+  // The display floor is 2rem, not 2.75rem: at 2.75rem the single word
+  // "Fuerteventura" is wider than a 390px phone, and an overflowing
+  // heading widens the whole document — which pushed the hamburger
+  // button off the right edge of the screen.
+  --fs-display: clamp(2rem, 8.5vw, 5rem);
+  --fs-h1: clamp(2rem, 4.5vw, 3.25rem);
+  --fs-h2: clamp(1.625rem, 3vw, 2.25rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --fs-h4: 1.125rem;
+  --fs-lead: clamp(1.0625rem, 1.4vw, 1.25rem);
+  --fs-body: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+
+  // ---- Space ------------------------------------------------
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+
+  // ---- Radius ---------------------------------------------
+  // Tighter than the old uniform 15px — restraint reads as expensive.
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-full: 999px;
+
+  // ---- Elevation ------------------------------------------
+  // Tinted with the ink brown and layered, rather than a single grey
+  // blur — a neutral shadow on a clay ground reads as dirt.
+  --shadow-sm: 0 1px 2px rgba(36, 28, 23, 0.05),
+    0 2px 8px -4px rgba(36, 28, 23, 0.09);
+  --shadow-md: 0 1px 2px rgba(36, 28, 23, 0.05),
+    0 8px 24px -12px rgba(36, 28, 23, 0.16);
+  --shadow-lg: 0 2px 4px rgba(36, 28, 23, 0.05),
+    0 18px 48px -20px rgba(36, 28, 23, 0.24);
+  --shadow-xl: 0 4px 8px rgba(36, 28, 23, 0.07),
+    0 40px 80px -32px rgba(36, 28, 23, 0.32);
+
+  // ---- Motion ---------------------------------------------
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-mid: 260ms;
+  --dur-slow: 480ms;
+
+  // ---- Layout ---------------------------------------------
+  --container: 1180px;
+  --measure: 68ch;
+  --header-h: 72px;
+
+  color-scheme: light;
+}
+
+// -------------------------------------------------------------
+//  Reset
+// -------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+// Any author-level `display` beats the UA stylesheet's `[hidden]{display:none}`,
+// so an element toggled with the `hidden` attribute stays visible if its own
+// rule sets a display value. Without this, .mobile-menu { display: flex }
+// kept the drawer on screen permanently.
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  // Blanket suppression. Every decorative transition and the old
+  // infinite `pulse` on the booking CTA respect this.
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Belt-and-braces against sideways scroll. Long unbreakable words (place
+// names, the email address, German compounds) are the usual culprit; this
+// makes them wrap instead of widening the document.
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+dd,
+dt {
+  overflow-wrap: break-word;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.65;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+video,
+canvas,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+// -------------------------------------------------------------
+//  Base typography
+// -------------------------------------------------------------
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+h4 {
+  font-size: var(--fs-h4);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+// No hardcoded color here — inherit from the parent. A hardcoded dark ink
+// broke on every dark section: react-i18next's Trans auto-renders <strong>
+// for translation strings that contain it (no `components` prop needed),
+// so any emphasized place name inside a dark .page-head or .section--dark
+// rendered in dark-ink-on-near-black and was effectively invisible — this
+// is what happened on the Sightseeing page header.
+strong,
+b {
+  font-weight: 600;
+}
+
+a {
+  color: var(--terra-600);
+  text-decoration-color: color-mix(in srgb, var(--terra-600) 35%, transparent);
+  text-underline-offset: 0.18em;
+  transition: color var(--dur-fast) var(--ease),
+    text-decoration-color var(--dur-fast) var(--ease);
+
+  &:hover {
+    color: var(--terra-500);
+    text-decoration-color: currentColor;
+  }
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+
+  li + li {
+    margin-top: var(--s-2);
+  }
+}
+
+// -------------------------------------------------------------
+//  Focus — the old site had none at all
+// -------------------------------------------------------------
+:focus-visible {
+  @include focus-ring;
+}
+
+// Mouse users don't get a ring; keyboard users always do.
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// -------------------------------------------------------------
+//  Shared primitives
+// -------------------------------------------------------------
+
+// Skip link for keyboard users.
+.skip-link {
+  position: absolute;
+  left: var(--s-4);
+  top: var(--s-4);
+  z-index: 2000;
+  padding: var(--s-3) var(--s-5);
+  background: var(--stone-900);
+  color: var(--text-invert);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease);
+
+  &:focus-visible {
+    transform: translateY(0);
+    color: var(--text-invert);
+  }
+}
+
+.u-container {
+  @include container;
+}
+
+.u-prose {
+  @include prose;
+
+  p + p {
+    margin-top: var(--s-5);
+  }
+
+  // .u-prose paragraphs are muted-colored text; without this, inherited
+  // <strong> would only be heavier, not higher-contrast, and emphasis
+  // would barely read against the already-muted body copy. Scoped to
+  // .u-prose (always on a light surface) rather than set globally —
+  // that's what broke emphasized text on dark sections before.
+  strong,
+  b {
+    color: var(--text);
+  }
+}
+
+.u-eyebrow {
+  @include eyebrow;
+}
+
+.u-ornament {
+  @include ornament;
+}
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// -------------------------------------------------------------
+//  Button system — replaces the ad-hoc `.airbnb-button`,
+//  `.cookies-accept-button` and bare `button` rules.
+// -------------------------------------------------------------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 48px; // was 30px — below the 44px touch target minimum
+  padding: var(--s-3) var(--s-6);
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  background: none;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+// Primary: the booking action. Earns its weight through colour,
+// not through an infinite pulse animation.
+.btn--primary {
+  background: var(--terra-500);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(36, 28, 23, 0.10),
+    0 8px 20px -10px color-mix(in srgb, var(--terra-700) 60%, transparent);
+
+  &:hover {
+    background: var(--terra-700);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(36, 28, 23, 0.12),
+      0 14px 28px -12px color-mix(in srgb, var(--terra-700) 70%, transparent);
+  }
+}
+
+.btn--secondary {
+  background: var(--stone-900);
+  color: var(--text-invert);
+
+  &:hover {
+    background: var(--terra-600);
+    color: var(--text-invert);
+  }
+}
+
+.btn--ghost {
+  border-color: var(--border-strong);
+  color: var(--text);
+
+  &:hover {
+    background: var(--surface);
+    border-color: var(--text-subtle);
+    color: var(--text);
+  }
+}
+
+// On top of photography — translucent with a blur.
+.btn--on-image {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+// -------------------------------------------------------------
+//  Section rhythm
+// -------------------------------------------------------------
+.section {
+  padding-block: clamp(var(--s-12), 8vw, var(--s-24));
+}
+
+.section--tight {
+  padding-block: clamp(var(--s-8), 5vw, var(--s-16));
+}
+
+.section--sand {
+  background: var(--surface-sunken);
+}
+
+// Dark band on the basalt ground, for sections that need to break the
+// run of clay-coloured pages.
+.section--dark {
+  background: var(--stone-900);
+  color: var(--text-invert);
+
+  h1,
+  h2,
+  h3 {
+    color: var(--text-invert);
+  }
+
+  .u-eyebrow {
+    color: color-mix(in srgb, var(--terra-100) 85%, transparent);
+  }
+}
+
+.section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin-bottom: var(--s-10);
+  text-align: center;
+  align-items: center;
+
+  p {
+    max-width: 58ch;
+    color: var(--text-muted);
+    font-size: var(--fs-lead);
+  }
+}

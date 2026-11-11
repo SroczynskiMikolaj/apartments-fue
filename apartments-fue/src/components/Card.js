@@ -1,23 +1,80 @@
-import React from "react";
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from 'react-router-dom';
+import RatingBadge from "./RatingBadge";
 
-function Card(props) {
+/**
+ * Apartment teaser card.
+ *
+ * The whole card is one <Link>, not a <div onClick={navigate}>. That gives
+ * back keyboard focus, middle-click / cmd-click to open in a new tab, the
+ * browser status-bar URL preview, and a crawlable href for search engines —
+ * none of which the old click handler provided.
+ */
+function Card({ apartment }) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const { slug, title, shortTitleKey, images, people, beds, surface, rating } =
+    apartment;
 
-  const handleClick = () => {
-    const path = `/${props.path}`;
-    navigate(path);
-  };
+  // Writes the pointer position into two custom properties so CSS can put a
+  // warm highlight under the cursor. Styles are set directly rather than via
+  // state — this fires on every mouse move, and re-rendering the card at
+  // that rate would be wasteful. The card is fully usable without it.
+  const trackPointer = useCallback((event) => {
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  }, []);
 
   return (
-    <div className="card" onClick={handleClick}>
-      <img src={props.image} className="image" alt={props.alt} />
-      <div className="title">
-        <a>{props.title}</a>
+    <Link className="apt-card" to={`/${slug}`} onPointerMove={trackPointer}>
+      <span className="apt-card__glow" aria-hidden="true" />
+      <div className="apt-card__media">
+        <img
+          src={images[0]}
+          alt={t("Apartment_card_image_alt", { name: title })}
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="apt-card__badge">{t(shortTitleKey)}</span>
       </div>
-    </div>
+
+      <div className="apt-card__body">
+        <div className="apt-card__heading">
+          <h3 className="apt-card__title">{title}</h3>
+          <RatingBadge rating={rating} />
+        </div>
+
+        <ul className="apt-card__specs">
+          <li>
+            <span className="material-icons-outlined" aria-hidden="true">
+              person
+            </span>
+            {t("Card_guests", { count: people })}
+          </li>
+          <li>
+            <span className="material-icons-outlined" aria-hidden="true">
+              bed
+            </span>
+            {t("Card_beds", { count: beds })}
+          </li>
+          <li>
+            <span className="material-icons-outlined" aria-hidden="true">
+              straighten
+            </span>
+            {surface} m²
+          </li>
+        </ul>
+
+        <span className="apt-card__cta">
+          {t("Card_view_details")}
+          <span className="material-icons-outlined" aria-hidden="true">
+            arrow_forward
+          </span>
+        </span>
+      </div>
+    </Link>
   );
 }
 
