@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.40690d86.css",
-    "main.js": "/static/js/main.afe45615.js",
+    "main.css": "/static/css/main.47d8759d.css",
+    "main.js": "/static/js/main.af48f0af.js",
     "static/js/453.4d7dc99a.chunk.js": "/static/js/453.4d7dc99a.chunk.js",
     "static/media/Liques.png": "/static/media/Liques.c283437250a41c3f5d35.png",
     "static/media/IMG_3214.jpeg": "/static/media/IMG_3214.ac655eff070d9b9081f6.jpeg",
@@ -20,17 +20,14 @@
     "static/media/IMG_1381.jpg": "/static/media/IMG_1381.dfb6f633bd8a0fb2b598.jpg",
     "static/media/6.png": "/static/media/6.345811563b6574e6eab8.png",
     "static/media/IMG_5768.jpg": "/static/media/IMG_5768.0ac3b3028a75ccad3249.jpg",
-    "static/media/IMG_1254.jpg": "/static/media/IMG_1254.7b11667ea6932fbfc076.jpg",
     "static/media/logo3.png": "/static/media/logo3.664aed90b4a4927dc808.png",
     "static/media/CostaCalma.jpg": "/static/media/CostaCalma.a62b6e82348c46e047ba.jpg",
     "static/media/IMG_1564.jpg": "/static/media/IMG_1564.fc3052c1722706e32538.jpg",
     "static/media/IMG_8385.jpg": "/static/media/IMG_8385.9b86fd2048a165384cdf.jpg",
     "static/media/IMG_1281.jpg": "/static/media/IMG_1281.597210d45619f739a939.jpg",
     "static/media/IMG_1690.jpg": "/static/media/IMG_1690.f7a91cc0982b87a9fd08.jpg",
-    "static/media/IMG_5515.jpg": "/static/media/IMG_5515.5fc9f8d0f592f321bca7.jpg",
     "static/media/IMG_1712.jpg": "/static/media/IMG_1712.498eaa2e54ac392ccb19.jpg",
     "static/media/IMG_1757.jpg": "/static/media/IMG_1757.bfc69cf395ea615106fd.jpg",
-    "static/media/IMG_8433.jpg": "/static/media/IMG_8433.af0e769f056256a56339.jpg",
     "static/media/IMG_2428.jpg": "/static/media/IMG_2428.cb3511a31a13d6264a82.jpg",
     "static/media/IMG_6897.jpg": "/static/media/IMG_6897.c75120e1d3310907934d.jpg",
     "static/media/Picture15.jpg": "/static/media/Picture15.9664bdc2864adc43334d.jpg",
@@ -38,13 +35,11 @@
     "static/media/Picture17.jpg": "/static/media/Picture17.c11043b1358617d18ea0.jpg",
     "static/media/material-icons-two-tone.woff": "/static/media/material-icons-two-tone.3baa5b8f3469222b822d.woff",
     "static/media/tialdhe.jpg": "/static/media/tialdhe.268a69a5de271fa419c4.jpg",
-    "static/media/Picture3.png": "/static/media/Picture3.a450af2efe087c26a906.png",
     "static/media/Picture11.jpg": "/static/media/Picture11.3fe333b0f73af38aa5ad.jpg",
     "static/media/material-icons-two-tone.woff2": "/static/media/material-icons-two-tone.4ef4218c522f1eb6b5b1.woff2",
     "static/media/Picture12.jpg": "/static/media/Picture12.ba7d603b4d45d93665cd.jpg",
     "static/media/material-icons-round.woff": "/static/media/material-icons-round.5d681e2edae8c60630db.woff",
     "static/media/Picture10.jpg": "/static/media/Picture10.c45fdd8d994c46c4d2c3.jpg",
-    "static/media/Picture2.jpg": "/static/media/Picture2.6a0e40fbc24aa26c8f7b.jpg",
     "static/media/material-icons-outlined.woff": "/static/media/material-icons-outlined.f882956fd323fd322f31.woff",
     "static/media/5.webp": "/static/media/5.c143c4227c094b7b2518.webp",
     "static/media/material-icons-round.woff2": "/static/media/material-icons-round.c380809fd3677d7d6903.woff2",
@@ -78,12 +73,13 @@
     "static/media/Picture16.jpg": "/static/media/Picture16.0d7bedaffe2cc0063963.jpg",
     "static/media/10.webp": "/static/media/10.bb157e108b529e32e0bb.webp",
     "index.html": "/index.html",
-    "main.40690d86.css.map": "/static/css/main.40690d86.css.map",
-    "main.afe45615.js.map": "/static/js/main.afe45615.js.map",
+    "static/media/no_photo.svg": "/static/media/no_photo.5ef7fca192b83c990dd524306d9acc59.svg",
+    "main.47d8759d.css.map": "/static/css/main.47d8759d.css.map",
+    "main.af48f0af.js.map": "/static/js/main.af48f0af.js.map",
     "453.4d7dc99a.chunk.js.map": "/static/js/453.4d7dc99a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.40690d86.css",
-    "static/js/main.afe45615.js"
+    "static/css/main.47d8759d.css",
+    "static/js/main.af48f0af.js"
   ]
 }

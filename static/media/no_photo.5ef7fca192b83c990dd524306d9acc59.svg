@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Photo coming soon">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f6e7da"/>
+      <stop offset="100%" stop-color="#fbf7f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#sky)"/>
+  <path d="M0 340 L140 230 L230 320 L330 190 L460 330 L560 250 L640 340 L640 480 L0 480 Z" fill="#e7dacb"/>
+  <path d="M0 390 L180 300 L300 380 L420 300 L560 390 L640 350 L640 480 L0 480 Z" fill="#d6c3ae"/>
+  <circle cx="490" cy="110" r="42" fill="#f6e7da" stroke="#c2612f" stroke-width="3"/>
+  <g transform="translate(234 196)" fill="none" stroke="#8a3f19" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="0" y="26" width="172" height="118" rx="12"/>
+    <path d="M46 26 L66 2 H106 L126 26"/>
+    <circle cx="86" cy="88" r="34"/>
+  </g>
+  <circle cx="86" cy="284" r="13" fill="#8a3f19"/>
+  <text x="320" y="410" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#4a3b33" text-anchor="middle">Photo coming soon</text>
+</svg>
