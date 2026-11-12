@@ -1,0 +1,108 @@
+@import "variables";
+
+.booking-chooser {
+  position: relative;
+  display: inline-block;
+
+  &__caret {
+    transition: transform $dur-mid $ease;
+
+    &.is-open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    left: 0;
+    z-index: 20;
+    width: min(340px, calc(100vw - 2rem));
+    padding: $s-3;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: $r-lg;
+    box-shadow: $shadow-xl;
+    color: $text;
+    animation: booking-chooser-in $dur-mid $ease-out both;
+  }
+
+  // Opens upwards inside the hero: the hero clips anything below its edge,
+  // and the photo above the button has plenty of room.
+  &--up &__panel {
+    bottom: calc(100% + #{$s-2});
+    transform-origin: bottom left;
+  }
+
+  &--down &__panel {
+    top: calc(100% + #{$s-2});
+    transform-origin: top left;
+  }
+
+  &__title {
+    @include eyebrow;
+    padding: $s-1 $s-2 $s-2;
+    color: $text-subtle;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li + li {
+      margin-top: $s-1;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: $s-3;
+    padding: $s-2;
+    border-radius: $r-md;
+    color: $text;
+    text-decoration: none;
+    transition: background-color $dur-fast $ease;
+
+    &:hover,
+    &:focus-visible {
+      background: $clay-100;
+      color: $text;
+    }
+  }
+
+  &__thumb {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: $r-sm;
+    object-fit: cover;
+  }
+
+  &__name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+    font-size: $fs-sm;
+    line-height: 1.3;
+  }
+
+  &__out {
+    flex: none;
+    font-size: 18px;
+    color: $terra-600;
+  }
+}
+
+@keyframes booking-chooser-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

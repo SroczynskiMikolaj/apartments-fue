@@ -11,6 +11,7 @@ import { PL, GB, DE, ES, IT, DK } from "country-flag-icons/react/3x2";
 // header hand-wrote both copies, so every nav change had to be made twice.
 const NAV_ITEMS = [
   { to: "/", labelKey: "About_us" },
+  { to: "/Apartments", labelKey: "Nav_apartments" },
   { to: "/Sightseeing", labelKey: "Sightseeing" },
   { to: "/Climate", labelKey: "Climate" },
   { to: "/Restaurants", labelKey: "Restaurants" },

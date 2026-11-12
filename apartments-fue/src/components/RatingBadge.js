@@ -15,10 +15,17 @@ function RatingBadge({ rating, className = "" }) {
 
   if (!rating || !rating.reviews) return null;
 
-  const formattedDate = new Intl.DateTimeFormat(i18n.resolvedLanguage || "en", {
+  const locale = i18n.resolvedLanguage || "en";
+  const formattedDate = new Intl.DateTimeFormat(locale, {
     month: "long",
     year: "numeric",
   }).format(new Date(rating.checked));
+  // "4,81" in Polish/German/Spanish/Italian/Danish, "4.81" in English —
+  // the same way Airbnb itself shows it in each language.
+  const formattedValue = new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(rating.value);
 
   return (
     <span
@@ -28,7 +35,7 @@ function RatingBadge({ rating, className = "" }) {
       <span className="material-icons-round rating-badge__star" aria-hidden="true">
         star
       </span>
-      <span className="rating-badge__value">{rating.value.toFixed(2)}</span>
+      <span className="rating-badge__value">{formattedValue}</span>
       <span className="rating-badge__reviews">
         {t("Rating_reviews_count", { count: rating.reviews })}
       </span>

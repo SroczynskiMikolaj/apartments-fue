@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useTranslation, Trans } from "react-i18next";
 import { FreeMode, Keyboard, Navigation, Thumbs, Pagination } from "swiper/modules";
@@ -25,7 +25,7 @@ function Apartment({ apartment }) {
     surface,
     airbnbUrl,
     mapEmbedSrc,
-    descriptionKeys,
+    description,
     reservationKey,
     rating,
   } = apartment;
@@ -63,6 +63,31 @@ function Apartment({ apartment }) {
         open_in_new
       </span>
     </a>
+  );
+
+  // "Check your dates" card. Rendered twice: at the top of the right column
+  // and again at the end of the description.
+  const bookingCard = () => (
+    <div className="booking-panel__card">
+      <div className="booking-panel__intro">
+        <p className="u-eyebrow">{t(shortTitleKey)}</p>
+        <p className="booking-panel__title">{t("Booking_panel_title")}</p>
+        <p className="booking-panel__text">{t("Booking_panel_text")}</p>
+      </div>
+      <div className="booking-panel__actions">
+        {bookButton("btn btn--primary booking-panel__btn")}
+        <dl className="booking-panel__meta">
+          <div>
+            <dt>{t("Hero_fact_guests_label")}</dt>
+            <dd>{people}</dd>
+          </div>
+          <div>
+            <dt>{t("Booking_panel_size")}</dt>
+            <dd>{surface} m²</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   );
 
   return (
@@ -209,42 +234,36 @@ function Apartment({ apartment }) {
         </div>
       )}
 
-      {/* ---- Description + sticky booking panel ---- */}
+      {/* ---- Description + right column ---- */}
       <div className="apartment__content u-container">
         <div className="apartment__main">
           <section className="apartment__section">
+            {/* Intro, any number of headed sections, closing line — the
+                shape comes from `description` in data/apartments.js and the
+                text from i18n/apartment23.js / apartment27.js. */}
             <div className="u-prose apartment__description">
-              <p>
-                <Trans i18nKey={descriptionKeys[0]} />
+              <p className="apartment__intro">
+                <Trans i18nKey={`${description.prefix}_intro`} />
               </p>
 
-              <h2 className="apartment__subhead">
-                {t("Apartment_header_text")}
-              </h2>
-              <p>
-                <Trans i18nKey={descriptionKeys[1]} />
-              </p>
+              {description.sections.map((paragraphs, index) => {
+                const key = `${description.prefix}_s${index + 1}`;
+                return (
+                  <Fragment key={key}>
+                    <h2 className="apartment__subhead">{t(`${key}_title`)}</h2>
+                    {Array.from({ length: paragraphs }, (_, p) => (
+                      <p key={p}>
+                        <Trans i18nKey={`${key}_p${p + 1}`} />
+                      </p>
+                    ))}
+                  </Fragment>
+                );
+              })}
 
-              <h2 className="apartment__subhead">
-                {t("Apartment_header_text_2")}
-              </h2>
-              <p>
-                <Trans i18nKey={descriptionKeys[2]} />
+              <p className="apartment__closing">
+                <Trans i18nKey={`${description.prefix}_closing`} />
               </p>
             </div>
-          </section>
-
-          <section className="apartment__section">
-            <h2 className="apartment__section-title">{t("Furnishings")}</h2>
-            <Furnishings />
-          </section>
-
-          <section className="apartment__section">
-            <h2 className="apartment__section-title">{t("Map_heading")}</h2>
-            <ApartmentMap
-              src={mapEmbedSrc}
-              title={t("Map_title_named", { name: title })}
-            />
           </section>
 
           <section className="apartment__section">
@@ -255,28 +274,33 @@ function Apartment({ apartment }) {
               <p>{t(reservationKey)}</p>
               <p>{t("Apartment_1_reservation_2")}</p>
             </div>
+
+            {/* The same card again where the reading ends, so nobody has to
+                scroll back up to book. Shown on every screen size — on
+                phones it's the natural next step after the last paragraph. */}
+            <div className="booking-end">{bookingCard()}</div>
           </section>
         </div>
 
-        {/* Follows the reader down the page so the booking action is always
-            one click away, instead of being repeated twice in the markup. */}
-        <aside className="booking-panel">
-          <div className="booking-panel__card">
-            <p className="u-eyebrow">{t(shortTitleKey)}</p>
-            <p className="booking-panel__title">{t("Booking_panel_title")}</p>
-            <p className="booking-panel__text">{t("Booking_panel_text")}</p>
-            {bookButton("btn btn--primary booking-panel__btn")}
-            <dl className="booking-panel__meta">
-              <div>
-                <dt>{t("Hero_fact_guests_label")}</dt>
-                <dd>{people}</dd>
-              </div>
-              <div>
-                <dt>{t("Booking_panel_size")}</dt>
-                <dd>{surface} m²</dd>
-              </div>
-            </dl>
-          </div>
+        {/* Right column: booking card, then amenities and the map, so the
+            long description has the facts beside it rather than after it.
+            Below 1024px the columns stack and only the booking card hides —
+            the bottom booking bar takes over its job there. */}
+        <aside className="apartment__aside">
+          <div className="booking-panel">{bookingCard()}</div>
+
+          <section className="aside-card">
+            <h2 className="aside-card__title">{t("Furnishings")}</h2>
+            <Furnishings />
+          </section>
+
+          <section className="aside-card">
+            <h2 className="aside-card__title">{t("Map_heading")}</h2>
+            <ApartmentMap
+              src={mapEmbedSrc}
+              title={t("Map_title_named", { name: title })}
+            />
+          </section>
         </aside>
       </div>
 

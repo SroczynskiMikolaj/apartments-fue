@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Apartment from "./components/Apartment";
+import Apartments from "./components/Apartments";
 import Sightseeing from "./components/Sightseeing";
 import Fuerteventura from "./components/Fuerteventura";
 import Climate from "./components/Climate";
@@ -50,6 +51,7 @@ function App() {
                   element={<Apartment apartment={apartment} />}
                 />
               ))}
+              <Route path="/Apartments" element={<Apartments />} />
               <Route path="/Sightseeing" element={<Sightseeing />} />
               <Route path="/Restaurants" element={<Restaurants />} />
               <Route path="/Fuerteventura" element={<Fuerteventura />} />

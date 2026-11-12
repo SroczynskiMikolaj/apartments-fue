@@ -35,11 +35,7 @@ function Home() {
 
   return (
     <>
-      <Hero
-        image={heroImage}
-        primaryHref={first.airbnbUrl}
-        secondaryTo={`/${first.slug}`}
-      />
+      <Hero image={heroImage} secondaryTo="/Apartments" />
 
       {/* Welcome / intro */}
       <section className="section" id="about">

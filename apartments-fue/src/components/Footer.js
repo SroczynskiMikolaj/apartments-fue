@@ -5,6 +5,7 @@ import logo from "../assets/logo3.png";
 
 const FOOTER_LINKS = [
   { to: "/", labelKey: "About_us" },
+  { to: "/Apartments", labelKey: "Nav_apartments" },
   { to: "/Sightseeing", labelKey: "Sightseeing" },
   { to: "/Climate", labelKey: "Climate" },
   { to: "/Restaurants", labelKey: "Restaurants" },

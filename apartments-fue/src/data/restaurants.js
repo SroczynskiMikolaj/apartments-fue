@@ -13,6 +13,7 @@ import image19 from "../assets/restaurants/IMG_6897.jpg";
 import image21 from "../assets/restaurants/IMG_8425.jpg";
 import image23 from "../assets/restaurants/IMG_3214.jpeg";
 import image24 from "../assets/restaurants/IMG_3262.jpeg";
+import losCaracoles from "../assets/restaurants/los_caracoles.jpg";
 
 import iconAll from "../assets/icons/all.png";
 import iconFish from "../assets/icons/fish.png";
@@ -160,6 +161,15 @@ export const RESTAURANT_PLACES = [
     categories: ["fish", "seafood", "local", "meat"],
   },
 
+  {
+    name: "Los Caracoles Fuerteventura",
+    latitude: 28.323054,
+    longitude: -13.895948,
+    image: losCaracoles,
+    description: "Los_Caracoles",
+    categories: NO_MEAT,
+  },
+
   // --- No photograph yet; these fall back to the placeholder image. ---
   {
     name: "Restaurante Rugama",
@@ -231,14 +241,6 @@ export const RESTAURANT_PLACES = [
     longitude: -13.9848,
     image: noPhoto,
     description: "Restaurante_casa_Victor",
-    categories: NO_MEAT,
-  },
-  {
-    name: "Los Caracoles Fuerteventura",
-    latitude: 28.323054,
-    longitude: -13.895948,
-    image: noPhoto,
-    description: "Los_Caracoles",
     categories: NO_MEAT,
   },
   {

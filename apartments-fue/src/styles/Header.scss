@@ -1,5 +1,27 @@
 @import "variables";
 
+// The bar is wider than the page content (1180px): logo + seven nav items +
+// six language flags need ~1210px of room, which the 1100px content area
+// couldn't give — the nav squeezed the logo until its text ran into "Oferta".
+$header-width: 1320px;
+
+// Width below which the header switches to the hamburger drawer. Its own
+// value rather than the shared 1024px breakpoint: below this the full bar
+// doesn't fit (the flags were pushed off the right edge of the screen).
+$bp-nav: 1300px;
+
+@mixin nav-compact {
+  @media (max-width: #{$bp-nav}) {
+    @content;
+  }
+}
+
+@mixin nav-full {
+  @media (min-width: #{$bp-nav + 1px}) {
+    @content;
+  }
+}
+
 .site-header {
   // Always fixed. Toggling between fixed and sticky on scroll would pull
   // the header in and out of flow and shift the page by its own height.
@@ -14,7 +36,7 @@
     backdrop-filter $dur-mid $ease;
 
   &__inner {
-    @include container;
+    @include container($header-width);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +49,7 @@
     align-items: center;
     gap: clamp($s-6, 3vw, $s-10);
 
-    @include lg {
+    @include nav-compact {
       display: none;
     }
   }
@@ -54,6 +76,9 @@
 //  Brand
 // -------------------------------------------------------------
 .brand {
+  // Never let the nav squeeze the logo; the breakpoint above switches to
+  // the hamburger before it would have to.
+  flex: none;
   display: flex;
   align-items: center;
   gap: $s-3;
@@ -221,7 +246,7 @@
   background: none;
   cursor: pointer;
 
-  @include lg {
+  @include nav-compact {
     display: flex;
   }
 
@@ -265,7 +290,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: $shadow-lg;
 
-  @include above-lg {
+  @include nav-full {
     display: none;
   }
 

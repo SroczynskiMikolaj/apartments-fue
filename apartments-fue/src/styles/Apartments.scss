@@ -1,0 +1,307 @@
+@import "variables";
+
+// One slow, soft curve for every part of the expand so the photo, the
+// widths and the revealed details all move together.
+$showcase-ease: cubic-bezier(0.65, 0, 0.35, 1);
+$showcase-dur: 0.75s;
+
+.showcase {
+  position: relative;
+  background: $stone-900;
+
+  &__panels {
+    display: flex;
+    height: clamp(520px, calc(100svh - var(--header-h)), 880px);
+  }
+
+  // ---------------------------------------------------------------
+  //  Hover hint on the seam between the two photos
+  // ---------------------------------------------------------------
+  &__hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $s-3;
+    transform: translate(-50%, -50%);
+    // Hover must reach the panels underneath, not stop on the hint.
+    pointer-events: none;
+    transition: opacity 0.35s $ease, transform 0.35s $ease;
+  }
+
+  &__hint-icon {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: $r-full;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(42, 33, 28, 0.35);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+
+    .material-icons-outlined {
+      font-size: 24px;
+      margin-inline: -5px;
+    }
+
+    // A slow ring that breathes outward — draws the eye to the seam.
+    // Frozen by the global reduced-motion rule.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      animation: showcase-hint-ring 2.4s ease-out infinite;
+    }
+  }
+
+  &__hint-label {
+    padding: 5px $s-3;
+    border-radius: $r-full;
+    background: rgba(42, 33, 28, 0.55);
+    backdrop-filter: blur(8px);
+    font-size: $fs-xs;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  // Once someone is exploring, the hint has done its job.
+  &:hover &__hint,
+  &:focus-within &__hint {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+@keyframes showcase-hint-ring {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+// -----------------------------------------------------------------
+//  Panels
+// -----------------------------------------------------------------
+.showcase-panel {
+  position: relative;
+  // flex-grow values are the widths in percent: 50/50 at rest, 65/35 on
+  // hover. They always add up to 100, so the split moves evenly through
+  // the whole animation instead of lurching at the start.
+  flex: 50 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end; // content sits at the bottom of the photo
+  overflow: hidden;
+  isolation: isolate;
+  transition: flex-grow $showcase-dur $showcase-ease;
+
+  & + & {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.04);
+    transition: transform 1.2s $showcase-ease, filter $showcase-dur $showcase-ease;
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgba(36, 28, 23, 0.9) 0%,
+      rgba(36, 28, 23, 0.45) 38%,
+      rgba(36, 28, 23, 0.08) 70%
+    );
+    transition: background-color $showcase-dur $showcase-ease;
+  }
+
+  // Not positioned on purpose: that way the stretched link's ::after
+  // (below) resolves against the panel itself and covers all of it.
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $s-2;
+    padding: clamp($s-6, 4vw, $s-12);
+    color: #fff;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &__title {
+    @include display(clamp(1.75rem, 3.2vw, 2.75rem));
+    color: #fff;
+    max-width: 16ch;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    // Stretched link: the whole panel becomes the click target.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline-color: #fff;
+    }
+  }
+
+  // The shared badge is dark-on-light by default.
+  &__rating.rating-badge {
+    color: #fff;
+
+    .rating-badge__reviews {
+      color: rgba(255, 255, 255, 0.78);
+    }
+  }
+
+  // Hidden until the panel is expanded.
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $s-5;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(12px);
+    transition: max-height $showcase-dur $showcase-ease,
+      opacity 0.45s $ease, transform $showcase-dur $showcase-ease;
+  }
+
+  &__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-2 $s-5;
+    margin: $s-3 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: $fs-sm;
+    color: rgba(255, 255, 255, 0.88);
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $s-2;
+      margin: 0;
+    }
+
+    .material-icons-outlined {
+      font-size: 19px;
+      color: $terra-100;
+    }
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 1; // above the stretched link, so these stay clickable
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s-3;
+  }
+}
+
+// -----------------------------------------------------------------
+//  Expand on hover / keyboard focus (devices that can hover)
+// -----------------------------------------------------------------
+@media (hover: hover) and (min-width: 769px) {
+  .showcase__panels:hover .showcase-panel,
+  .showcase__panels:focus-within .showcase-panel {
+    flex-grow: 35; // the squeezed side
+  }
+
+  // Same specificity as the reset above (and declared after it), so the
+  // hovered panel wins. As a bare `.showcase-panel:hover` it lost to the
+  // reset and nothing expanded.
+  .showcase__panels .showcase-panel:hover,
+  .showcase__panels .showcase-panel:focus-within {
+    flex-grow: 65; // the expanded side
+
+    .showcase-panel__photo {
+      transform: scale(1);
+    }
+
+    .showcase-panel__details {
+      max-height: 260px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // The panel being squeezed dims slightly, so attention follows the
+  // one that's opening up.
+  .showcase__panels:hover .showcase-panel:not(:hover),
+  .showcase__panels:focus-within .showcase-panel:not(:focus-within) {
+    .showcase-panel__scrim {
+      background-color: rgba(36, 28, 23, 0.35);
+    }
+  }
+}
+
+// -----------------------------------------------------------------
+//  Touch / narrow screens: no hover to drive it, so stack the
+//  apartments and show everything up front.
+// -----------------------------------------------------------------
+@media (hover: none), (max-width: 768px) {
+  .showcase__panels {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .showcase-panel {
+    flex: none;
+    min-height: clamp(420px, 62svh, 620px);
+
+    & + & {
+      border-left: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    &__details {
+      max-height: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .showcase__hint {
+    display: none;
+  }
+}

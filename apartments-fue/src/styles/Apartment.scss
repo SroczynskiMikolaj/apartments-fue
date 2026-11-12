@@ -367,6 +367,20 @@
 
 .apartment__description {
   max-width: $measure;
+
+  // A paragraph straight after a section heading shouldn't get the
+  // paragraph-to-paragraph gap on top of the heading's own spacing.
+  .apartment__subhead + p {
+    margin-top: 0;
+  }
+}
+
+// The closing sentence sums the apartment up — set apart with a rule.
+.apartment__closing {
+  margin-top: $s-8;
+  padding-top: $s-6;
+  border-top: 1px solid $border;
+  color: $text;
 }
 
 .apartment-map {
@@ -429,11 +443,80 @@
 // -------------------------------------------------------------
 //  Booking panel (desktop sidebar)
 // -------------------------------------------------------------
-.booking-panel {
-  position: sticky;
-  // Clears the fixed header plus a little breathing room.
-  top: calc(var(--header-h) + #{$s-6});
+// -------------------------------------------------------------
+//  Right column: booking card, amenities, map
+// -------------------------------------------------------------
+.apartment__aside {
+  display: flex;
+  flex-direction: column;
+  gap: $s-6;
+  min-width: 0;
+}
 
+// Amenities and map get the same card treatment as the booking panel so
+// the column reads as one set.
+.aside-card {
+  padding: $s-6;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  box-shadow: $shadow-sm;
+
+  &__title {
+    @include display($fs-h3);
+    margin-bottom: $s-5;
+  }
+
+  .furnishings {
+    gap: $s-6;
+  }
+
+  // In the 340px column a 16:9 map is a thin strip; squarer reads better.
+  .apartment-map {
+    box-shadow: none;
+
+    iframe {
+      aspect-ratio: 4 / 3;
+    }
+  }
+}
+
+// The second copy of the card, at the end of the description: a wide, low
+// strip as wide as the text above it — copy on the left, button and facts
+// on the right. Stacks back into the tall card on narrow screens.
+.booking-end {
+  max-width: $measure;
+  font-size: $fs-body; // $measure is in ch, so match the prose font size
+  margin-top: $s-8;
+
+  .booking-panel__card {
+    @include above-md {
+      flex-direction: row;
+      align-items: center;
+      gap: $s-8;
+    }
+  }
+
+  .booking-panel__intro {
+    flex: 1 1 auto;
+  }
+
+  .booking-panel__actions {
+    @include above-md {
+      flex: 0 0 280px;
+    }
+  }
+
+  .booking-panel__btn {
+    @include above-md {
+      margin-top: 0;
+    }
+  }
+}
+
+// No longer sticky: with amenities and the map stacked underneath it, a
+// card that followed the scroll would slide over them.
+.booking-panel {
   @include lg {
     display: none;
   }
@@ -447,6 +530,13 @@
     border: 1px solid $border;
     border-radius: $r-lg;
     box-shadow: $shadow-md;
+  }
+
+  &__intro,
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $s-3;
   }
 
   &__title {

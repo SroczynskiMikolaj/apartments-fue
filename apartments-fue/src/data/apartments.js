@@ -70,20 +70,18 @@ export const APARTMENTS = [
     surface: 45,
     airbnbUrl:
       "https://www.airbnb.pl/rooms/863722242925772929?guests=1&adults=1&s=67&unique_share_id=69fe8b66-b848-4380-bbb2-3aadfcd052ba",
-    // Manually maintained — see "Keeping the rating current" in rating.js.
-    // PLACEHOLDER: replace with the real values from your Airbnb host
-    // dashboard before shipping, then update `checked` whenever you refresh
-    // them (every month or so is plenty).
-    rating: { value: 4.9, reviews: 0, checked: "2026-01-01" },
+    // Manually maintained — see "Keeping the Airbnb rating current" at the
+    // top of this file. Copy the numbers from the Airbnb listing and set
+    // `checked` to the day you copied them.
+    rating: { value: 4.81, reviews: 43, checked: "2026-11-12" },
     // Verified: this embed resolves to "Apartament 23 - Colores de Fuerteventura 2".
     mapEmbedSrc:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1091.1094905382247!2d-14.221792!3d28.170936!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc479dbab87a8d25%3A0x4308c4573d8e01e1!2sApartament%2023%20-%20Colores%20de%20Fuerteventura%202!5e1!3m2!1spl!2spl!4v1724836381305!5m2!1spl!2spl",
-    // i18n keys for the three description blocks.
-    descriptionKeys: [
-      "Apartment_1_description",
-      "Apartment_1_description_2",
-      "Apartment_1_description_3",
-    ],
+    // Description text lives in i18n/apartment23.js. `sections` is how many
+    // paragraphs each headed section has; the page builds the keys
+    // (Apt23_s1_title, Apt23_s1_p1, …) from it, and the i18n test checks
+    // every one of them exists in all six languages.
+    description: { prefix: "Apt23", sections: [3, 1, 1, 2, 1, 2] },
     reservationKey: "Apartment_1_reservation_1",
   },
   {
@@ -97,16 +95,13 @@ export const APARTMENTS = [
     surface: 45,
     airbnbUrl:
       "https://www.airbnb.pl/rooms/30067044?guests=1&adults=1&s=67&unique_share_id=df41e7ba-2cca-4db9-acfc-323f7cb93021",
-    // PLACEHOLDER — see the note on the 23 listing above.
-    rating: { value: 4.9, reviews: 0, checked: "2026-01-01" },
+    // Manually maintained — see the note on the 23 listing above.
+    rating: { value: 4.88, reviews: 57, checked: "2026-11-12" },
     // Verified: this embed resolves to "27 Colores de Fuerteventura".
     mapEmbedSrc:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1091.1094905382247!2d-14.221792!3d28.170936!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc479de6c4eec7eb%3A0x2750dfc46e2ead49!2s27%20Colores%20de%20Fuerteventura!5e1!3m2!1spl!2spl!4v1724836092024!5m2!1spl!2spl",
-    descriptionKeys: [
-      "Apartment_2_description",
-      "Apartment_2_description_2",
-      "Apartment_2_description_3",
-    ],
+    // Text in i18n/apartment27.js — see the note on the 23 listing above.
+    description: { prefix: "Apt27", sections: [3, 2, 2, 2, 2] },
     reservationKey: "Apartment_2_reservation_1",
   },
 ];

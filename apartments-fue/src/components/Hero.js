@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useWaterRipple } from "../hooks/useWaterRipple";
+import BookingChooser from "./BookingChooser";
 import "../styles/Hero.scss";
 
 /**
@@ -13,7 +14,7 @@ import "../styles/Hero.scss";
  * further down — it's the first photo a visitor sees, so it's the most
  * natural place to notice the effect exists.
  */
-function Hero({ image, primaryHref, secondaryTo }) {
+function Hero({ image, secondaryTo }) {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const imgRef = useRef(null);
@@ -49,14 +50,7 @@ function Hero({ image, primaryHref, secondaryTo }) {
         <p className="hero__lead">{t("Hero_lead")}</p>
 
         <div className="hero__actions">
-          <a
-            className="btn btn--primary"
-            href={primaryHref}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t("Airbnb_reservation")}
-          </a>
+          <BookingChooser placement="up" />
           <Link className="btn btn--on-image" to={secondaryTo}>
             {t("Hero_view_apartments")}
           </Link>
