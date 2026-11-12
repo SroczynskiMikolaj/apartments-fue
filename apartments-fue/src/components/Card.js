@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import RatingBadge from "./RatingBadge";
@@ -16,20 +15,8 @@ function Card({ apartment }) {
   const { slug, title, shortTitleKey, images, people, beds, surface, rating } =
     apartment;
 
-  // Writes the pointer position into two custom properties so CSS can put a
-  // warm highlight under the cursor. Styles are set directly rather than via
-  // state — this fires on every mouse move, and re-rendering the card at
-  // that rate would be wasteful. The card is fully usable without it.
-  const trackPointer = useCallback((event) => {
-    const el = event.currentTarget;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    el.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  }, []);
-
   return (
-    <Link className="apt-card" to={`/${slug}`} onPointerMove={trackPointer}>
-      <span className="apt-card__glow" aria-hidden="true" />
+    <Link className="apt-card" to={`/${slug}`}>
       <div className="apt-card__media">
         <img
           src={images[0]}

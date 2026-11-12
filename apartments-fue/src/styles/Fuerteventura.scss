@@ -17,7 +17,11 @@
     margin-bottom: $s-4;
   }
 
-  p {
+  // Scoped to the article body. As a bare `.island p` it also matched the
+  // eyebrow and lead paragraphs in the dark page-head band (`.island` is on
+  // the whole page) and outranked their light colours — dark brown text on
+  // the dark brown header.
+  &__body p {
     font-size: $fs-body;
     line-height: 1.75;
     color: $text-muted;

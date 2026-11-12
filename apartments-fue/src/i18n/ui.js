@@ -59,7 +59,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "Air temperatures sit between 19 °C and 26 °C month after month, and it almost never rains.",
     Town_eyebrow: "The town",
-    Ocean_hint: "Move your cursor through the water",
     La_Alcogida: "La Alcogida is an open-air museum in the village of Tefía, made up of seven traditional Majorero farmhouses restored to show island life as it was a century ago. Craftspeople demonstrate traditional weaving, pottery, and gofio-milling in several of the houses. It's a quiet, unhurried stop and a good contrast to the beaches.",
     Isla_de_Lobos: "Isla de Lobos is a small, uninhabited volcanic island just off Corralejo, reached by a 20-minute ferry. A flat, well-marked trail loops around it past the lagoon of La Caleta del Puertito, with some of the clearest water in the archipelago for swimming and snorkelling. Visitor numbers are capped, so a free permit is required in high season.",
     Montana_Tindaya: "Tindaya is a striking volcanic mountain sacred to the island's original Majo inhabitants, who carved hundreds of foot-shaped petroglyphs into its slopes — among the oldest traces of human presence on Fuerteventura. The mountain is usually seen from the road rather than climbed, as access to the summit is restricted.",
@@ -246,7 +245,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "Temperatura powietrza miesiąc po miesiącu utrzymuje się między 19 °C a 26 °C, a deszcz pada tu wyjątkowo rzadko.",
     Town_eyebrow: "Miejscowość",
-    Ocean_hint: "Poruszaj kursorem po wodzie",
     La_Alcogida: "La Alcogida to skansen pod gołym niebem we wsi Tefía, złożony z siedmiu tradycyjnych gospodarstw Majorero odrestaurowanych tak, by pokazać życie na wyspie sprzed stu lat. W kilku domach rzemieślnicy pokazują tradycyjne tkactwo, garncarstwo i mielenie gofio. To spokojny, niespieszny przystanek i dobry kontrast dla plaż.",
     Isla_de_Lobos: "Isla de Lobos to niewielka, niezamieszkana wulkaniczna wyspa tuż przy Corralejo, do której dopływa się 20-minutowym promem. Płaski, dobrze oznaczony szlak prowadzi wokół wyspy obok laguny La Caleta del Puertito, gdzie woda należy do najczystszych w archipelagu — idealna do pływania i snorkelingu. Liczba odwiedzających jest ograniczona, więc w sezonie potrzebna jest bezpłatna przepustka.",
     Montana_Tindaya: "Tindaya to charakterystyczna wulkaniczna góra, święta dla pierwotnych mieszkańców wyspy, Majos, którzy wyryli na jej zboczach setki petroglifów w kształcie stóp — jedne z najstarszych śladów obecności człowieka na Fuerteventurze. Górę zwykle ogląda się z drogi, a nie zdobywa, ponieważ dostęp na szczyt jest ograniczony.",
@@ -437,7 +435,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "Die Lufttemperatur liegt Monat für Monat zwischen 19 °C und 26 °C, und es regnet so gut wie nie.",
     Town_eyebrow: "Der Ort",
-    Ocean_hint: "Bewegen Sie den Mauszeiger durchs Wasser",
     La_Alcogida: "La Alcogida ist ein Freilichtmuseum im Dorf Tefía, bestehend aus sieben restaurierten traditionellen Majorero-Gehöften, die das Inselleben vor rund hundert Jahren zeigen. In mehreren Häusern führen Handwerker traditionelles Weben, Töpfern und das Mahlen von Gofio vor. Ein ruhiger, entspannter Zwischenstopp und ein guter Kontrast zu den Stränden.",
     Isla_de_Lobos: "Isla de Lobos ist eine kleine, unbewohnte Vulkaninsel direkt vor Corralejo, die mit einer 20-minütigen Fähre erreichbar ist. Ein flacher, gut markierter Weg führt rund um die Insel vorbei an der Lagune La Caleta del Puertito, deren Wasser zu den klarsten im Archipel zählt — ideal zum Schwimmen und Schnorcheln. Die Besucherzahl ist begrenzt, in der Hochsaison ist daher eine kostenlose Genehmigung nötig.",
     Montana_Tindaya: "Tindaya ist ein markanter Vulkanberg, der den ursprünglichen Bewohnern der Insel, den Majos, heilig war. Sie meißelten Hunderte fußförmiger Petroglyphen in seine Hänge — einige der ältesten Spuren menschlicher Anwesenheit auf Fuerteventura. Der Berg wird meist von der Straße aus betrachtet statt bestiegen, da der Zugang zum Gipfel eingeschränkt ist.",
@@ -619,7 +616,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "La temperatura del aire se mantiene entre 19 °C y 26 °C mes tras mes, y casi nunca llueve.",
     Town_eyebrow: "El pueblo",
-    Ocean_hint: "Mueva el cursor por el agua",
     La_Alcogida: "La Alcogida es un museo al aire libre en el pueblo de Tefía, formado por siete casas tradicionales majoreras restauradas para mostrar cómo era la vida en la isla hace un siglo. En varias de ellas, artesanos hacen demostraciones de tejido tradicional, alfarería y molienda de gofio. Es una parada tranquila y sin prisas, buen contraste con las playas.",
     Isla_de_Lobos: "Isla de Lobos es una pequeña isla volcánica deshabitada frente a Corralejo, a la que se llega en un ferry de 20 minutos. Una ruta llana y bien señalizada rodea la isla junto a la laguna de La Caleta del Puertito, con algunas de las aguas más claras del archipiélago para nadar y bucear con tubo. El número de visitantes está limitado, por lo que en temporada alta hace falta un permiso gratuito.",
     Montana_Tindaya: "Tindaya es una llamativa montaña volcánica sagrada para los antiguos majos, que grabaron en sus laderas cientos de podomorfos (grabados con forma de pie), entre los rastros más antiguos de presencia humana en Fuerteventura. La montaña suele contemplarse desde la carretera y no se sube, ya que el acceso a la cima está restringido.",
@@ -801,7 +797,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "La temperatura dell'aria resta tra i 19 °C e i 26 °C mese dopo mese, e non piove quasi mai.",
     Town_eyebrow: "Il paese",
-    Ocean_hint: "Muovete il cursore nell’acqua",
     La_Alcogida: "La Alcogida è un museo all'aperto nel villaggio di Tefía, composto da sette tradizionali case majorere restaurate per mostrare la vita sull'isola di un secolo fa. In diverse case, artigiani mostrano la tessitura tradizionale, la ceramica e la macinazione del gofio. È una tappa tranquilla e senza fretta, un buon contrasto rispetto alle spiagge.",
     Isla_de_Lobos: "Isla de Lobos è una piccola isola vulcanica disabitata di fronte a Corralejo, raggiungibile con un traghetto di 20 minuti. Un sentiero pianeggiante e ben segnalato gira intorno all'isola passando per la laguna di La Caleta del Puertito, con alcune delle acque più limpide dell'arcipelago per nuotare e fare snorkeling. Il numero di visitatori è limitato, quindi in alta stagione serve un permesso gratuito.",
     Montana_Tindaya: "Tindaya è una suggestiva montagna vulcanica sacra agli antichi abitanti majos dell'isola, che incisero sui suoi fianchi centinaia di petroglifi a forma di piede, tra le tracce più antiche di presenza umana a Fuerteventura. La montagna si osserva di solito dalla strada e non si scala, poiché l'accesso alla cima è limitato.",
@@ -983,7 +978,6 @@ export const UI_STRINGS = {
     Highlight_climate_text:
       "Lufttemperaturen ligger måned efter måned mellem 19 °C og 26 °C, og det regner stort set aldrig.",
     Town_eyebrow: "Byen",
-    Ocean_hint: "Bevæg markøren gennem vandet",
     La_Alcogida: "La Alcogida er et friluftsmuseum i landsbyen Tefía, bestående af syv traditionelle majorero-gårde, restaureret for at vise øens liv for omkring hundrede år siden. I flere af husene viser håndværkere traditionel vævning, keramik og formaling af gofio. Et roligt, afslappet stop og en god kontrast til strandene.",
     Isla_de_Lobos: "Isla de Lobos er en lille, ubeboet vulkansk ø lige ud for Corralejo, som nås med en 20 minutters færgetur. En flad, velmarkeret sti går rundt om øen forbi lagunen La Caleta del Puertito, hvor vandet er blandt det klareste i øgruppen — perfekt til svømning og snorkling. Antallet af besøgende er begrænset, så i højsæsonen kræves en gratis tilladelse.",
     Montana_Tindaya: "Tindaya er et markant vulkansk bjerg, helligt for øens oprindelige majos-befolkning, som indhuggede hundredvis af fodformede petroglyffer i dets skråninger — nogle af de ældste spor af menneskelig tilstedeværelse på Fuerteventura. Bjerget betragtes som regel fra vejen frem for at blive besteget, da adgangen til toppen er begrænset.",

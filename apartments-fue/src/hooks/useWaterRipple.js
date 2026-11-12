@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Makes the photo on `canvasRef` ripple like a real water surface wherever
@@ -198,6 +198,9 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
     refraction = 0.0017,
   } = options;
   const [focalX, focalY] = focal;
+  // Bumped when the browser restores a lost WebGL context, which re-runs
+  // the whole setup below against the fresh context.
+  const [contextGeneration, setContextGeneration] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -205,14 +208,16 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
     const imgEl = imgRef.current;
     if (!section || !canvas || !imgEl) return undefined;
 
-    // No cursor to drag across the water on touch — skip entirely rather
-    // than run a simulation loop nobody will ever see move.
-    if (!window.matchMedia("(pointer: fine)").matches) return undefined;
+    // No cursor to drag across the water without any mouse/trackpad — skip
+    // rather than run a loop nobody will ever see move. `any-pointer`, not
+    // `pointer`: on a touchscreen laptop the *primary* pointer is the touch
+    // screen, which used to switch this off even with a mouse plugged in.
+    if (!window.matchMedia("(any-pointer: fine)").matches) return undefined;
 
     const gl =
       canvas.getContext("webgl", { alpha: false, antialias: false }) ||
       canvas.getContext("experimental-webgl", { alpha: false, antialias: false });
-    if (!gl) return undefined;
+    if (!gl || gl.isContextLost()) return undefined;
 
     const halfFloat = gl.getExtension("OES_texture_half_float");
     const textureType = halfFloat
@@ -286,7 +291,40 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       return true;
     };
 
+    // Uploads the photo at roughly the resolution the canvas can actually
+    // show, not at full camera resolution. The source photos are 4032x3024:
+    // as an RGBA texture that's ~48 MB of video memory each, plus a long
+    // synchronous upload. On weaker GPUs that was enough to get the WebGL
+    // context dropped, which is one reason the effect didn't always appear.
     const uploadBackground = () => {
+      const iw = imgEl.naturalWidth;
+      const ih = imgEl.naturalHeight;
+      const rect = section.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const cw = Math.max(rect.width, window.innerWidth) * dpr;
+      const ch = Math.max(rect.height, 1) * dpr;
+      const maxSize = Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE), 2560);
+      // "cover" shows the image at max(cw/iw, ch/ih) of its size; matching
+      // that gives about one texel per screen pixel.
+      const factor = Math.min(
+        1,
+        Math.max(cw / iw, ch / ih),
+        maxSize / Math.max(iw, ih)
+      );
+
+      let source = imgEl;
+      if (factor < 1) {
+        const scaled = document.createElement("canvas");
+        scaled.width = Math.max(1, Math.round(iw * factor));
+        scaled.height = Math.max(1, Math.round(ih * factor));
+        const ctx2d = scaled.getContext("2d");
+        if (ctx2d) {
+          ctx2d.imageSmoothingQuality = "high";
+          ctx2d.drawImage(imgEl, 0, 0, scaled.width, scaled.height);
+          source = scaled;
+        }
+      }
+
       backgroundTexture = gl.createTexture();
       gl.bindTexture(gl.TEXTURE_2D, backgroundTexture);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
@@ -294,7 +332,7 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imgEl);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
     };
 
     const resize = () => {
@@ -370,12 +408,24 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
 
+    // Hand the photo back to the plain <img> underneath.
+    const fallBackToPhoto = () => {
+      ready = false;
+      canvas.classList.remove("is-ready");
+    };
+
     const loop = () => {
       if (destroyed) return;
       if (ready && onScreen) {
-        simulate();
-        while (pendingDrops.length > 0) runDrop(pendingDrops.shift());
-        renderFrame();
+        try {
+          simulate();
+          while (pendingDrops.length > 0) runDrop(pendingDrops.shift());
+          renderFrame();
+        } catch {
+          // A single unexpected error used to kill the loop for good and
+          // leave a frozen canvas over the photo. Show the photo instead.
+          fallBackToPhoto();
+        }
       }
       raf = requestAnimationFrame(loop);
     };
@@ -404,7 +454,7 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
     };
 
     const start = () => {
-      if (destroyed) return;
+      if (destroyed || gl.isContextLost()) return;
       if (!allocateTargets()) return; // unsupported — leave the <img> as-is
       uploadBackground();
       resize();
@@ -412,11 +462,30 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       canvas.classList.add("is-ready");
     };
 
+    // Decode off the main thread first where supported, so the upload
+    // doesn't stall scrolling while a large JPEG decodes synchronously.
+    const begin = () => {
+      const decoded = imgEl.decode ? imgEl.decode() : Promise.resolve();
+      decoded.catch(() => {}).then(start);
+    };
+
     if (imgEl.complete && imgEl.naturalWidth > 0) {
-      start();
+      begin();
     } else {
-      imgEl.addEventListener("load", start, { once: true });
+      imgEl.addEventListener("load", begin, { once: true });
     }
+
+    // The browser can drop a WebGL context at any time (GPU memory
+    // pressure, driver reset, too many contexts on the page). Fall back to
+    // the static photo straight away, and rebuild everything if the
+    // browser later offers the context back.
+    const onContextLost = (event) => {
+      event.preventDefault(); // required for webglcontextrestored to fire
+      fallBackToPhoto();
+    };
+    const onContextRestored = () => setContextGeneration((g) => g + 1);
+    canvas.addEventListener("webglcontextlost", onContextLost);
+    canvas.addEventListener("webglcontextrestored", onContextRestored);
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(section);
@@ -441,12 +510,22 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       intersectionObserver.disconnect();
       section.removeEventListener("pointermove", onPointerMove);
       section.removeEventListener("pointerleave", onPointerLeave);
-      imgEl.removeEventListener("load", start);
+      imgEl.removeEventListener("load", begin);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      canvas.removeEventListener("webglcontextrestored", onContextRestored);
+      // Free GPU memory now rather than whenever the old canvas happens to
+      // be garbage-collected. Only the targets were released before, so
+      // every visit to the home page leaked the full-size photo texture.
       disposeTargets();
+      if (backgroundTexture) gl.deleteTexture(backgroundTexture);
+      Object.values(programs).forEach(({ program }) => gl.deleteProgram(program));
+      gl.deleteBuffer(quadBuffer);
+      canvas.classList.remove("is-ready");
     };
     // sectionRef/canvasRef/imgRef are refs — stable identity, safe to omit.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    contextGeneration,
     simResolution,
     dropRadius,
     dropStrength,

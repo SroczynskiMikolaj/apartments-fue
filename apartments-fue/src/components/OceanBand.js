@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 import beach from "../assets/sightseeing/sotavento.jpg";
 import { useWaterRipple } from "../hooks/useWaterRipple";
 import "../styles/OceanBand.scss";
@@ -17,7 +16,6 @@ const WAVE_PATH =
   "M0,60 C180,110 360,10 540,50 C720,90 900,20 1080,55 C1260,90 1380,70 1440,60 L1440,120 L0,120 Z";
 
 function OceanBand({ eyebrow, title, children }) {
-  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const imgRef = useRef(null);
   const canvasRef = useRef(null);
@@ -29,7 +27,19 @@ function OceanBand({ eyebrow, title, children }) {
   return (
     <section className="ocean" ref={sectionRef}>
       <div className="ocean__media">
-        <img ref={imgRef} src={beach} alt="" loading="lazy" decoding="async" />
+        {/* Not lazy: the ripple can't start until this photo has fully
+            downloaded, and with lazy loading the download only began once
+            the band scrolled near — so on a first visit the effect usually
+            wasn't ready by the time the cursor reached it. Low priority
+            keeps it from competing with the hero photo above the fold. */}
+        <img
+          ref={imgRef}
+          src={beach}
+          alt=""
+          loading="eager"
+          fetchpriority="low"
+          decoding="async"
+        />
         {/* Replaces the <img> pixel-for-pixel once the ripple shader is
             ready; invisible (and inert) until then. */}
         <canvas className="ocean__ripple" ref={canvasRef} aria-hidden="true" />
@@ -40,10 +50,6 @@ function OceanBand({ eyebrow, title, children }) {
         <p className="u-eyebrow ocean__eyebrow">{eyebrow}</p>
         <h2 className="ocean__title">{title}</h2>
         <div className="ocean__text">{children}</div>
-        <p className="ocean__hint" aria-hidden="true">
-          <span className="material-icons-outlined">waves</span>
-          {t("Ocean_hint")}
-        </p>
       </div>
 
       {/* Three wave layers at different speeds and opacities. Pure CSS, so

@@ -288,6 +288,12 @@
         display: none;
       }
 
+      // The divider before the language flags already closes the list, so
+      // the last link's own border would draw a second line right above it.
+      &:last-child {
+        border-bottom: 0;
+      }
+
       &.is-active {
         color: $terra-500;
       }

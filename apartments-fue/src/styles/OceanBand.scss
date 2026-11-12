@@ -91,34 +91,6 @@
     color: rgba(255, 255, 255, 0.9);
   }
 
-  &__hint {
-    display: inline-flex;
-    align-items: center;
-    gap: $s-2;
-    margin-top: $s-8;
-    padding: $s-2 $s-4;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: $r-full;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    font-size: $fs-xs;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.85);
-
-    .material-icons-outlined {
-      font-size: 17px;
-    }
-
-    // No cursor to drag across the water on touch, so don't invite it.
-    // Reduced-motion users keep this: the ripple only moves because they
-    // moved their own cursor, so it's not the kind of motion that setting
-    // is meant to suppress.
-    @media (pointer: coarse) {
-      display: none;
-    }
-  }
-
   // -----------------------------------------------------------
   //  Waves
   // -----------------------------------------------------------
