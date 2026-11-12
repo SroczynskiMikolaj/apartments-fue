@@ -2,6 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Restores the real URL after 404.html bounced a deep link (e.g.
+         /Sightseeing) through "/?/Sightseeing". Must run before the app
+         bundle so React Router sees the correct path. See 404.html. -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {

@@ -15,6 +15,8 @@ const NAV_ITEMS = [
   { to: "/Climate", labelKey: "Climate" },
   { to: "/Restaurants", labelKey: "Restaurants" },
   { to: "/Commuting", labelKey: "Commuting" },
+  // Same "Island" key and route the footer already links to.
+  { to: "/Fuerteventura", labelKey: "Island" },
 ];
 
 const LANGUAGES = [

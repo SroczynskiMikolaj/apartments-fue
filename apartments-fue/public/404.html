@@ -1,7 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="refresh" content="0; url=./" />
+    <meta charset="utf-8" />
+    <title>Colores de Fuerteventura</title>
+    <script>
+      // GitHub Pages only serves real files, so opening or refreshing a
+      // client-side route such as /Sightseeing lands here instead of in the
+      // app. This turns the requested path into a query string and bounces
+      // to the site root, where index.html (see the matching script there)
+      // restores the original URL before React Router reads it.
+      // Technique: https://github.com/rafgraph/spa-github-pages (MIT).
+      //
+      // 0 = the site is served from the domain root (custom domain).
+      // Use 1 if it is ever served from a project path like /repo-name/.
+      var pathSegmentsToKeep = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
   </head>
   <body></body>
 </html>
