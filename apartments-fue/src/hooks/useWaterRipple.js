@@ -101,7 +101,7 @@ const RENDER_FS = `
 
     // A faint highlight along the steepest edge of each ripple, the way
     // real water catches the light — kept subtle on purpose.
-    vec3 normal = normalize(vec3(-gradient * 6.0, 1.0));
+    vec3 normal = normalize(vec3(-gradient * 40.0, 1.0));
     float specular = pow(max(dot(normal, normalize(vec3(-0.3, 0.4, 0.75))), 0.0), 80.0);
 
     gl_FragColor = color + vec4(specular * 0.35);
@@ -195,7 +195,11 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
     simResolution = 320,
     dropRadius = 0.065,
     dropStrength = 0.024,
-    refraction = 0.0017,
+    // How far a ripple's slope shifts the photo. The slope between two
+    // texels is tiny (~0.005), so this has to be large: the old 0.0017
+    // moved pixels by ~0.02 px, i.e. nothing visible at all. 0.3 gives a
+    // few pixels of gentle wobble at the crest of a ripple.
+    refraction = 0.3,
   } = options;
   const [focalX, focalY] = focal;
   // Bumped when the browser restores a lost WebGL context, which re-runs
@@ -414,11 +418,30 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       canvas.classList.remove("is-ready");
     };
 
-    const loop = () => {
+    // The wave equation advances one fixed step per call, so it must run at
+    // a fixed rate, not once per screen refresh. On a 144/240 Hz monitor a
+    // step per frame made ripples spread and die 2.4–4x faster than on
+    // 60 Hz — gone before you could see them. (Opening DevTools often
+    // drops the page to 60 Hz, which is why it "worked with DevTools open".)
+    const STEP_MS = 1000 / 60;
+    const MAX_STEPS_PER_FRAME = 4; // after a stall, catch up a little, not forever
+    let lastTime = null;
+    let pendingTime = 0;
+
+    const loop = (now) => {
       if (destroyed) return;
+      const elapsed = lastTime === null ? STEP_MS : Math.min(now - lastTime, 250);
+      lastTime = now;
       if (ready && onScreen) {
         try {
-          simulate();
+          pendingTime += elapsed;
+          let steps = 0;
+          while (pendingTime >= STEP_MS && steps < MAX_STEPS_PER_FRAME) {
+            simulate();
+            pendingTime -= STEP_MS;
+            steps += 1;
+          }
+          if (steps === MAX_STEPS_PER_FRAME) pendingTime = 0;
           while (pendingDrops.length > 0) runDrop(pendingDrops.shift());
           renderFrame();
         } catch {
@@ -441,11 +464,19 @@ export function useWaterRipple(sectionRef, canvasRef, imgRef, options = {}) {
       // slightly bigger ripple — closer to how a real fingertip behaves
       // than a fixed-strength drop on every event would be.
       const travel = lastPoint ? Math.hypot(u - lastPoint.u, v - lastPoint.v) : 0.01;
-      lastPoint = { u, v };
+      // pointermove fires once per frame, so a 144 Hz screen gets ~2.4x
+      // as many drops as a 60 Hz one. Weight each drop by the time it
+      // covers (relative to a 60 Hz frame) so the surface gets the same
+      // push per second on any monitor.
+      const sincePrevious = lastPoint ? event.timeStamp - lastPoint.time : STEP_MS;
+      const weight = Math.min(1, Math.max(0.15, sincePrevious / STEP_MS));
+      lastPoint = { u, v, time: event.timeStamp };
       pendingDrops.push({
         u,
         v,
-        strength: Math.min(dropStrength * (0.6 + travel * 18), dropStrength * 2.2),
+        strength:
+          weight *
+          Math.min(dropStrength * (0.6 + (travel / weight) * 18), dropStrength * 2.2),
       });
     };
 
